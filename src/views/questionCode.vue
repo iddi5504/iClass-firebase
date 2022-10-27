@@ -16,25 +16,25 @@
 
 <script>
 import AppNav from "../components/appNav"
-import {bus} from '../main'
+import store from "../store/store"
+// import {bus} from '../main'
 export default {
     components:{
         AppNav
     },
     data(){
         return{
-            // questionCode:""
+            questionCode:''
         }
     },
     created(){
-        bus.$on("questionCode",(code)=>{
-            this.questionCode=code;
-        })
+        this.questionCode=store.getters.questionCode;
+        
     },
     computed:{
-        questionCode(){
-            return this.$route.params.id
-        }
+        // questionCode(){
+        //     return this.$route.params.id
+        // }
     }
 }
 </script>

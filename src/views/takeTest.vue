@@ -28,6 +28,14 @@ export default {
         return {
             studentName:""
         }
+    },
+    methods:{
+        takeTest(){
+            this.$store.dispatch('studentName',this.studentName)
+            .then(()=>{
+                this.studentName ? this.$router.push({name:'searchQuestion'}) : console.log('fill out your name')
+            })
+        }
     }
 }
 </script>
@@ -45,5 +53,8 @@ export default {
     top: 4px;
     font-size: 1.6rem;
     left: 12px;
+}
+input{
+    padding-left: 39px;
 }
 </style>

@@ -1,13 +1,22 @@
 <template>
  <div class="d-flex flex-column align-items-center h-100 w-100">
   <AppNav></AppNav>
+  <!-- section active -->
+  <div  class="section d-flex flex-row align-items-center justify-content-around w-100">
+    <div  @click="switch_('createTest')" >
+      <h4 :class="{'active':active==='createTest'}">Set Question</h4>
+    </div>
+    <div @click="switch_('submittedTest')" >
+      <h4 :class="{'active':active==='submittedTest'}">Test Submissions</h4>
+    </div>
+  </div>
   <!-- create test -->
   <transition name="switch" mode="out-in">
     <div key="1" v-if="active=='createTest'" class="body d-flex  justify-content-around flex-column align-items-ceneter text-center">
       <!-- teacher image -->
       <div class=" d-flex text-center align-items-center  flex-column">
         <img src="../assets/teacher.png" class="coloredicon" alt="">
-        <div class="h3" style="font-weight:500; color:var(--titleColor);">Choose question type</div>
+        <div class="h3" style="font-weight:500; color:var(--titleColor);">Choose question type {{teacherName}}</div>
       </div>
   
       <!-- choices -->
@@ -26,12 +35,13 @@
 
     <div key="2" v-if="active=='submittedTest'" class="body d-flex  justify-content-start flex-column align-items-ceneter text-center w-100">
       <h3>Submitted Tests</h3>
-      <div class="w-100" v-for="(submission,submissionIndex) in submissions" :key="submissionIndex">
-        <router-link class=" d-flex  justify-content-around flex-column align-items-center text-center w-100" :to="'/studentpage/markedQuestions/'+submission.submissionId">
+      <div class="w-100" v-for="(answerInfo,submissionIndex) in answerInfo" :key="submissionIndex">
+        <router-link class=" d-flex  justify-content-around flex-column align-items-center text-center w-100" :to="'/studentpage/markedQuestions/'+answerInfo.id">
           <div class=" d-flex  justify-content-around flex-column align-items-center text-center w-100">
             <div class="student d-flex flex-column justify-content-center align-items-start">
-              <div>{{submission.studentName}}</div>
-              <div>Class</div>
+              <div>{{answerInfo.studentName}}</div>
+              <div class="text-left -2">{{answerInfo.questionTitle}}</div>
+              <div>Class - <span style="color: #959595;">No Class</span></div>
             </div>
         </div>
         </router-link>
@@ -55,14 +65,24 @@ export default {
     }
   },
   computed:{
-    submissions(){
-      return store.getters.submissions
-    }
+    answerInfo(){
+      return store.getters.answerInfo
+    },
+    teacherName(){
+      return store.getters.teacherName
+    },
+
   },
   created(){
     // get the id of the submission made by the student
+    
     store.dispatch("getStudentSubmissions")
 
+  },
+  methods:{
+    switch_(active){
+      this.active = active
+    }
   }
 }
 </script>
@@ -85,20 +105,37 @@ export default {
     transform: translateX(100%);
 
   }
-
-
   
   .body{
     height: 100%;
-    max-width: 500px;
-    width: 100%;
+    max-width: 900px;
     align-items: center;
+    max-height: 71vh;
   }
  
   nav div{
     font-size: 1.4rem;
     text-align: center;
     width: 100%;
+  }
+
+  .section{
+    padding: 10px;
+    box-shadow: 1px 2px 6px 1px #031032;
+  }
+
+  .section div{
+    flex: 1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+   
+  }
+  .section div h4{
+    font-size: 1.3rem;
+  }
+  .section div:last-child{
+    border-left: 1px inset lightblue; 
   }
   .active{
     color: var(--brandcolor);
@@ -154,13 +191,19 @@ export default {
     margin: 10px;
     box-sizing: content-box;
     font-size: 19px;
-    
   }
+ 
   .student div:first-child{
     font-size: 1.4rem;
     font-weight: bold;
   }
+  .student div:first-child:hover{
+    text-decoration: underline;
+  }
 .body h3{
   padding: 10px;
+}
+a{
+  text-decoration: none;
 }
 </style>

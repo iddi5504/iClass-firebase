@@ -37,14 +37,15 @@ export default {
       numberOfQuestions: 0,
       questioncomplete: false,
       questionTitle: "",
-      question:''
+      question:'',
+      questionCode_:''
       // currentQuestion:[]
     }
   },
   methods: {
     addQuestion() {
       // this.numberOfQuestions = this.numberOfQuestions + 1;
-      store.dispatch("addQuestion")
+      this.questions={id:Math.random().toString().slice(2,9)}
      
     },
     questionsComplete() {
@@ -62,18 +63,20 @@ export default {
         questionTitle: this.questionTitle,
         Questions: this.questions
       }
-     
-      
         // dispatch the data to store and send to the server
         store.dispatch("questionsComplete", questionData)
-          .then(() => {
-            this.$router.push("/questiontype/multiplechoiceQ/questionCode/"+ this.questionCode)
-          });
-    
+        .then(()=>{
+          this.$router.push("/questiontype/multiplechoiceQ/questionCode")
+
+        })
+        
+
     }
 
   },
+  beforeUpdate(){
 
+  },
   created() {
     bus.$on("question", (data) => {
       this.questions[data.questionIndex] = data.question;
@@ -86,12 +89,7 @@ export default {
       this.question=this.questions
   },
  
-  // watch:{
-  //   questions(newQUestion){
-  //     this.currentQuestion=newQUestion
-  //     return currentQuestion
-  //   }
-  // }
+
   computed: {
     showComplete() {
       return this.question.length > 0 ? true : false;
@@ -100,13 +98,17 @@ export default {
     questions:{
       get(){
         return store.getters.questionCreation
+      },
+      set(question){
+        store.commit("addQuestion",question)
       }
     },
     questionCode(){
-      return store.getters.questionCode
+      return this.$store.getters.questionCode
     }
 
-  }
+  },
+
 
 }
 </script>

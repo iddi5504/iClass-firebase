@@ -54,8 +54,7 @@ export default {
     data() {
         return {
             email: "",
-            password: "",
-            teacherName: ""
+            password: ""
 
         }
     },
@@ -63,12 +62,14 @@ export default {
     methods: {
         signIn() {
             if(this.email && this.password){
+                this.$store.commit('teacherName', this.teacherName)
                 signInWithEmailAndPassword(auth,this.email,this.password)
                 .then(user=>{
                     const userUID=user.user.uid
                     getDoc(doc(users,userUID))
                     .then((snapshot)=>{
-                        console.log(snapshot.data())
+                        const userInfo={teacherId:snapshot.id,teacherName:snapshot.data().teacherName}
+                        this.$store.commit('teacherInfo',userInfo)
                         this.$router.push({name:'questiontype'})
                     })
 

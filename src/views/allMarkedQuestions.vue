@@ -25,6 +25,7 @@
 
 <script>
 import markedQuestion from "../components/markedQuestion"
+import { mapGetters } from 'vuex'
 import store from "../store/store"
 import AppNav from "../components/appNav"
 export default {
@@ -36,34 +37,32 @@ export default {
         return {
             submitted: false,
             showAnswers: false,
+            answers:[]
 
         }
     },
     created() {
+        console.warn("🚀 ~ file: allMarkedQuestions.vue ~ line 45 ~ created ~ this.questionAnswersCode", this.questionAnswersCode)
         // get question from store from database
-        store.dispatch("getQuestionAnswers", this.questionCode)
+        store.dispatch("getQuestionAnswers", this.questionAnswersCode)
         .then(() => {
             console.log("taking the answer from the store ")
         })
         console.log("🚀 ~ file: allMarkedQuestions.vue ~ line 45 ~ created ~ this.questionCode", this.questionCode)
-
     },
     computed: {
         // the answeredQuestionData for marking 
-        answeredQuestionData(){
-            return store.getters.answeredQuestionData
+    
+        // get answer id from params
+        questionAnswersCode(){
+            return this.$route.params.QuestionId
+        },
+       
+        ...mapGetters(['questionCode','studentName','score','answeredQuestionData'])
 
-        },
-        score(){
-            return store.getters.score
-        },
-        studentName(){
-            return store.getters.studentName
-        },
-        questionCode(){
-            return this.$store.getters.questionCode
-        }
-
+    },
+    watch:{
+        
     }
 }
 </script>

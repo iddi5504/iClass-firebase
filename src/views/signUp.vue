@@ -78,6 +78,9 @@ export default {
                         email:this.email,
                     })
                     .then(()=>{
+                        const userInfo={teacherId:user.user.uid,teacherName:this.teacherName}
+                        console.log(userInfo)
+                        this.$store.commit('teacherInfo',userInfo)
                         this.$router.push({name:'questiontype'})
                     })
 

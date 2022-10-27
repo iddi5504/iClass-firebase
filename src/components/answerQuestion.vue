@@ -46,9 +46,10 @@ export default {
   methods: {
     submit() {
       const answeredQuestionData={
-          id:this.randomQuestionId,
-          studentName:this.studentName,
-          teacherName:this.teacherName,
+          questionTitle:this.$store.state.questionTitle,
+          studentName:this.$store.state.studentName,
+          teacherName:this.$store.state.teacherName,
+          teacherId:this.$store.state.teacherId,
           questions:this.answeredQuestionData
       }
       console.warn("🚀 ~ file: answerQuestion.vue ~ line 62 ~ submit ~ answeredQuestionData", answeredQuestionData)
@@ -60,7 +61,7 @@ export default {
       })
     },
     showAnswers(){
-      this.$router.push("/studentpage/markedQuestions/"+this.randomQuestionId)
+      this.$router.push("/studentpage/markedQuestions/"+this.$store.state.questionAnswersCode)
     }
   },
   created() {
@@ -82,9 +83,7 @@ export default {
   },
   
   computed:{
-    randomQuestionId(){
-      return Math.random().toString().slice(3,10)
-    },
+
     ...mapGetters(['questionTitle','questions','teacherName','studentName'])
   },
 }

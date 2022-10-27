@@ -9,8 +9,15 @@
 
 <script>
 import store from './store/store'
+import { auth } from '../src/firebase/firebase'
+
 export default {
   store: store,
+  created(){
+    auth.onAuthStateChanged(()=>{
+      this.$store.commit('updateTeacherId',auth.currentUser.uid)
+    })
+  }
   
 }
 // --brandcolor: #E94560;

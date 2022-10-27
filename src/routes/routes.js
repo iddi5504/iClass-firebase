@@ -78,7 +78,7 @@ const routes = [
     component: multiplechoiceQ
   },
   {
-    path:'/questiontype/multiplechoiceQ/questionCode/:id',
+    path:'/questiontype/multiplechoiceQ/questionCode/',
     name:"questionCode",
     component: questionCode,
     props:true
