@@ -1,0 +1,1039 @@
+{
+  "Questions": [
+    {
+      "id": 1,
+      "questionTitle": "json-server",
+      "Questions": "typicode"
+    },
+    {
+      "id": "2p1mm21691",
+      "questionTitle": "Answer",
+      "Questions": [
+        {}
+      ]
+    },
+    {
+      "id": "9p9m14p271",
+      "questionTitle": "Answer",
+      "Questions": [
+        {},
+        {},
+        {},
+        {}
+      ]
+    },
+    {
+      "id": "2p6n6m2279",
+      "questionTitle": "",
+      "Questions": [
+        {}
+      ]
+    },
+    {
+      "id": "2173m692m7",
+      "questionTitle": "",
+      "Questions": [
+        {}
+      ]
+    },
+    {
+      "id": "267n7139p2",
+      "questionTitle": "answer the following question",
+      "Questions": [
+        {
+          "id": "6326600",
+          "question": "m,ss,ms",
+          "options": [
+            "m,ss"
+          ],
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "m1929m96n6",
+      "questionTitle": "answer the following question",
+      "Questions": [
+        {
+          "id": "8850419",
+          "question": "edited",
+          "options": [
+            "m,ss",
+            "m,ss",
+            "m,ss"
+          ],
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "71p9p2mp79",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "3156594",
+          "question": "this is a new test question",
+          "options": [
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "29917m42m3",
+      "questionTitle": "Answer all thse klafaklj",
+      "Questions": [
+        {
+          "id": "5504255",
+          "question": "71p9p2mp7971p9p2mp7971p9p2mp7971p9p2mp7971p9p2mp7971p9p2mp7971p9p2mp79",
+          "options": [
+            "71p9p2mp79",
+            "71p9p2mp79",
+            "71p9p2mp79",
+            "71p9p2mp79"
+          ],
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "779p3246nn",
+      "questionTitle": "answer the following question",
+      "Questions": [
+        {
+          "id": "2344766",
+          "question": "answeredQuestionDataansweredQuestionDataansweredQuestionDataansweredQuestionData",
+          "options": [
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "5386922",
+          "question": "answeredQuestionDataansweredQuestionData",
+          "options": [
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "8759598",
+          "question": "answeredQuestionDataansweredQuestionDataansweredQuestionData",
+          "options": [
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "7999631",
+          "question": "answeredQuestionDataansweredQuestionDataansweredQuestionData",
+          "options": [
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "6908682",
+          "question": "answeredQuestionDataansweredQuestionDataansweredQuestionData",
+          "options": [
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "9m6mmp924n",
+      "questionTitle": "Answer all thse klafaklj",
+      "Questions": [
+        {
+          "id": "2493805",
+          "question": "answeredQuestionDataansweredQuestionDataansweredQuestionDataansweredQuestionData",
+          "options": [
+            "answeredQuestionData",
+            "answeredQuestionData"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "6246729",
+          "question": "answeredQuestionDataansweredQuestionDataansweredQuestionData",
+          "options": [
+            "answeredQuestionData",
+            "answeredQuestionData",
+            "answeredQuestionData"
+          ],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "nm972m96pn",
+      "questionTitle": "answer the following question",
+      "Questions": [
+        {
+          "id": "8947061",
+          "question": "How many protons are in the element lithium",
+          "options": [
+            "2",
+            "5",
+            "3",
+            "2"
+          ],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "pnp72m1494",
+      "questionTitle": "Answer all questions",
+      "Questions": [
+        {
+          "id": "9891389",
+          "question": "How many protons are in the element lithium",
+          "options": [
+            "4",
+            "5",
+            "2",
+            "3"
+          ],
+          "answer": 3
+        },
+        {
+          "id": "1205572",
+          "question": "A unit of light with no mass is called ?",
+          "options": [
+            "Neutron",
+            "Photon",
+            "Neutrinos",
+            "Quarks"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "m49n4n3431",
+      "teacherName": "",
+      "questionTitle": "",
+      "Questions": [
+        {}
+      ]
+    },
+    {
+      "id": "31m736mnmm",
+      "teacherName": "iddi5504",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "5119767",
+          "question": "sssss",
+          "options": [
+            "signUpInfo.data.name"
+          ],
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "3p7p7p9314",
+      "teacherName": "Mr Zeba",
+      "questionTitle": "Answer all questions",
+      "Questions": [
+        {
+          "id": "8714728",
+          "question": "How many carbons are in ethyl",
+          "options": [
+            "4",
+            "3",
+            "1"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "3600866",
+          "question": "How many carbons are in methyl",
+          "options": [
+            "2",
+            "1",
+            "4"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "np13227m32",
+      "teacherName": "Mr Hameed",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "9821872",
+          "question": "The power house of the cell is the ",
+          "options": [
+            "Lisosome",
+            "Mitochondria",
+            "Endoplasmic recticulum"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "0760703",
+          "question": "Which organelle is found in only plant cells",
+          "options": [
+            "Chloroplast",
+            "Cell membrane",
+            "Nuleaus"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "339636nnm7",
+      "teacherName": "kkkl",
+      "questionTitle": "",
+      "Questions": [
+        {}
+      ]
+    },
+    {
+      "id": "2374917p34",
+      "teacherName": "Iddi",
+      "questionTitle": "Answer all questions",
+      "Questions": [
+        {
+          "id": "4157724",
+          "question": "The unit of force is ",
+          "options": [
+            "N/m",
+            "J",
+            "Nm",
+            "MLT"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "4112572",
+          "question": "Torque is also known as ",
+          "options": [
+            "Momment",
+            "Force",
+            "Pressure",
+            "Density"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "p99p3p619p",
+      "teacherName": "iddi",
+      "questionTitle": "This is a test",
+      "Questions": [
+        {
+          "id": "6137149",
+          "question": "Test questiion",
+          "options": [],
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "p42147613p",
+      "teacherName": "iddi5504",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "4993005",
+          "question": "   nmmmmmmmmmmm",
+          "options": [
+            "1",
+            "2"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "99m772mnm4",
+      "teacherName": "",
+      "teacherId": "",
+      "questionTitle": "dsfjlkfjlk",
+      "Questions": [
+        {
+          "id": "1154183",
+          "question": "i dont know oif the will veb work",
+          "options": [
+            "hopefilllu",
+            "mdm,d,m"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "mm6946p374",
+      "teacherName": "",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "2289233",
+          "question": "klklflkfalkd",
+          "options": [
+            "msmnsmnd"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "9493274632",
+      "teacherName": "",
+      "teacherId": "",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "7151802",
+          "question": "dffd",
+          "options": [
+            "ddd"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "7n7m736316",
+      "teacherName": "",
+      "questionTitle": "",
+      "Questions": [
+        {}
+      ]
+    },
+    {
+      "id": "9pn1713146",
+      "teacherName": "",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "0408907",
+          "question": "bnnbbn",
+          "options": [
+            " nb"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "496n3166mm",
+      "teacherName": "",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "5413818",
+          "question": "xxxx",
+          "options": [
+            "zzz"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "21423p769m",
+      "teacherName": "",
+      "teacherId": "",
+      "questionTitle": "",
+      "Questions": [
+        {
+          "id": "5827448",
+          "question": "dd",
+          "options": [
+            "d"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "6m36n39n6p",
+      "teacherName": "",
+      "questionTitle": "This is a test",
+      "Questions": [
+        {
+          "id": "6778502",
+          "question": "amnanm",
+          "options": [
+            "nma"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "n4mn77p2p4",
+      "teacherName": "",
+      "questionTitle": "Answer",
+      "Questions": [
+        {
+          "id": "2201312",
+          "question": "manma",
+          "options": [
+            "nsanmas"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "71m777n932",
+      "teacherName": "",
+      "questionTitle": "Answer all questions",
+      "Questions": [
+        {
+          "id": "0843107",
+          "question": "makla",
+          "options": [
+            ",ms"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "212mn34p34",
+      "teacherName": "",
+      "teacherId": "",
+      "questionTitle": "Answer all questions",
+      "Questions": [
+        {
+          "id": "4061438",
+          "question": "        state.name=signUpInfo.data.name\n",
+          "options": [
+            "        state.name=signUpInfo.data.name"
+          ],
+          "answer": 0
+        }
+      ]
+    }
+  ],
+  "Teachers": [
+    {
+      "id": "kkjkjekj",
+      "name": "IDdi",
+      "submissions": []
+    },
+    {
+      "id": "Iddi",
+      "name": "Iddi",
+      "submissions": []
+    },
+    {
+      "id": "IDdi",
+      "name": "",
+      "submissions": []
+    },
+    {
+      "id": "username",
+      "name": "iddi",
+      "submissions": []
+    },
+    {
+      "id": "this username",
+      "name": "iddi5504",
+      "submissions": []
+    },
+    {
+      "id": "New username",
+      "name": "iddi5504",
+      "submissions": []
+    },
+    {
+      "id": "klkjlaflkjfa",
+      "name": "test 2 ",
+      "submissions": []
+    },
+    {
+      "id": "6uygkbj",
+      "name": "oyihkjiuygh",
+      "submissions": []
+    },
+    {
+      "id": "bvvbvbv",
+      "name": "bnbnbnbn",
+      "submissions": []
+    },
+    {
+      "id": "2d_quya",
+      "name": "",
+      "submissions": []
+    },
+    {
+      "id": "12345",
+      "name": "iddi",
+      "submissions": []
+    },
+    {
+      "id": "try",
+      "name": "try",
+      "submissions": []
+    },
+    {
+      "id": "iddi",
+      "name": "iddi",
+      "submissions": []
+    }
+  ],
+  "answeredQuestions": [
+    {
+      "id": "9092io",
+      "studentName": "Joe Santana",
+      "questions": [
+        {
+          "id": "0225459",
+          "quesetion": "lkjflsjklfd",
+          "correctAnswer": 1,
+          "userAnswer": 3
+        },
+        {
+          "id": "0225459",
+          "quesetion": "lkjflsjklfd",
+          "correctAnswer": 1,
+          "userAnswer": 3
+        }
+      ]
+    },
+    {
+      "id": "31m736mnmm",
+      "studentName": "store.state.studentName",
+      "questions": [
+        {
+          "id": "5119767",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 1,
+          "correctAnswer": "1",
+          "question": "sssss",
+          "options": [
+            "signUpInfo.data.name"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Er5jzII",
+      "studentName": "yakubuaisha318@gmail.com",
+      "questions": [
+        {
+          "id": "5119767",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 1,
+          "correctAnswer": "1",
+          "question": "sssss",
+          "options": [
+            "signUpInfo.data.name"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PpTaVQJ",
+      "studentName": "Abdullah Bamba",
+      "questions": [
+        {
+          "id": "8714728",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "How many carbons are in ethyl",
+          "options": [
+            "4",
+            "3",
+            "1"
+          ]
+        },
+        {
+          "id": "3600866",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "How many carbons are in methyl",
+          "options": [
+            "2",
+            "1",
+            "4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wRWbJ9B",
+      "studentName": "iddi5504",
+      "questions": [
+        {
+          "id": "8714728",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "How many carbons are in ethyl",
+          "options": [
+            "4",
+            "3",
+            "1"
+          ]
+        },
+        {
+          "id": "3600866",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "How many carbons are in methyl",
+          "options": [
+            "2",
+            "1",
+            "4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dHNxEfN",
+      "studentName": "Iddi Yakubu",
+      "questions": [
+        {
+          "id": "9821872",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "The power house of the cell is the ",
+          "options": [
+            "Lisosome",
+            "Mitochondria",
+            "Endoplasmic recticulum"
+          ]
+        },
+        {
+          "id": "0760703",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 1,
+          "correctAnswer": 1,
+          "question": "Which organelle is found in only plant cells",
+          "options": [
+            "Chloroplast",
+            "Cell membrane",
+            "Nuleaus"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1zQD08Q",
+      "studentName": "sandra",
+      "questions": [
+        {
+          "id": "9821872",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "The power house of the cell is the ",
+          "options": [
+            "Lisosome",
+            "Mitochondria",
+            "Endoplasmic recticulum"
+          ]
+        },
+        {
+          "id": "0760703",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 1,
+          "correctAnswer": 1,
+          "question": "Which organelle is found in only plant cells",
+          "options": [
+            "Chloroplast",
+            "Cell membrane",
+            "Nuleaus"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "IEULoOF",
+      "studentName": "sandra",
+      "questions": [
+        {
+          "id": "9821872",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "The power house of the cell is the ",
+          "options": [
+            "Lisosome",
+            "Mitochondria",
+            "Endoplasmic recticulum"
+          ]
+        },
+        {
+          "id": "0760703",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 1,
+          "correctAnswer": 1,
+          "question": "Which organelle is found in only plant cells",
+          "options": [
+            "Chloroplast",
+            "Cell membrane",
+            "Nuleaus"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lkdAI5X",
+      "studentName": "sandra",
+      "questions": [
+        {
+          "id": "9821872",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "The power house of the cell is the ",
+          "options": [
+            "Lisosome",
+            "Mitochondria",
+            "Endoplasmic recticulum"
+          ]
+        },
+        {
+          "id": "0760703",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 1,
+          "correctAnswer": 1,
+          "question": "Which organelle is found in only plant cells",
+          "options": [
+            "Chloroplast",
+            "Cell membrane",
+            "Nuleaus"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FKdeneE",
+      "studentName": "",
+      "questions": [
+        {
+          "id": "9821872",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "The power house of the cell is the ",
+          "options": [
+            "Lisosome",
+            "Mitochondria",
+            "Endoplasmic recticulum"
+          ]
+        },
+        {
+          "id": "0760703",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 1,
+          "correctAnswer": 1,
+          "question": "Which organelle is found in only plant cells",
+          "options": [
+            "Chloroplast",
+            "Cell membrane",
+            "Nuleaus"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "np13227m32",
+      "studentName": "",
+      "questions": [
+        {
+          "id": "9821872",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "The power house of the cell is the ",
+          "options": [
+            "Lisosome",
+            "Mitochondria",
+            "Endoplasmic recticulum"
+          ]
+        },
+        {
+          "id": "0760703",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 2,
+          "correctAnswer": 1,
+          "question": "Which organelle is found in only plant cells",
+          "options": [
+            "Chloroplast",
+            "Cell membrane",
+            "Nuleaus"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3p7p7p9314",
+      "studentName": "",
+      "questions": [
+        {
+          "id": "8714728",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 1,
+          "correctAnswer": 2,
+          "question": "How many carbons are in ethyl",
+          "options": [
+            "4",
+            "3",
+            "1"
+          ]
+        },
+        {
+          "id": "3600866",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 1,
+          "correctAnswer": 2,
+          "question": "How many carbons are in methyl",
+          "options": [
+            "2",
+            "1",
+            "4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pnp72m1494",
+      "studentName": "Iddi",
+      "questions": [
+        {
+          "id": "9891389",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 1,
+          "correctAnswer": 4,
+          "question": "How many protons are in the element lithium",
+          "options": [
+            "4",
+            "5",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "id": "1205572",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 1,
+          "correctAnswer": 2,
+          "question": "A unit of light with no mass is called ?",
+          "options": [
+            "Neutron",
+            "Photon",
+            "Neutrinos",
+            "Quarks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2374917p34",
+      "studentName": "",
+      "questions": [
+        {
+          "id": "4157724",
+          "questionIndex": 0,
+          "questionNumber": 1,
+          "userAnswer": 2,
+          "correctAnswer": 2,
+          "question": "The unit of force is ",
+          "options": [
+            "N/m",
+            "J",
+            "Nm",
+            "MLT"
+          ]
+        },
+        {
+          "id": "4112572",
+          "questionIndex": 1,
+          "questionNumber": 2,
+          "userAnswer": 4,
+          "correctAnswer": 1,
+          "question": "Torque is also known as ",
+          "options": [
+            "Momment",
+            "Force",
+            "Pressure",
+            "Density"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p99p3p619p",
+      "questions": []
+    },
+    {
+      "id": "p42147613p",
+      "questions": []
+    }
+  ]
+}
