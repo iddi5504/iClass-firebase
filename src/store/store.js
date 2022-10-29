@@ -224,6 +224,7 @@ export default new Vuex.Store({
         },
 
         getStudentSubmissions(context,id) {
+            console.warn(id)
             const teacherQuestions = query(questionAnswers, where('teacherId', '==', id))
             console.log("🚀 ~ file: store.js ~ line 230 ~ getStudentSubmissions ~ teacherQuestions", teacherQuestions)
             let answerInfo = []

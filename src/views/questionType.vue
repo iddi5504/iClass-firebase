@@ -85,8 +85,6 @@ export default {
   },
   created(){
     // get the id of the submission made by the student
-    
-    this.$store.dispatch("getStudentSubmissions")
     bus.$on(
       'showSubmissions',()=>{
         this.active='submittedTest'
