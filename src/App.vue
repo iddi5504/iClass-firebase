@@ -1,8 +1,6 @@
 <template>
   <transition name="switch" mode="out-in">
-
     <router-view></router-view>
-
   </transition>  
 
 </template>
@@ -13,16 +11,13 @@ import { auth } from '../src/firebase/firebase'
 
 export default {
   store: store,
-  created(){
+  beforeCreate(){
     auth.onAuthStateChanged(async (user)=>{
       if(user){
         // this.$router.push({name:'questiontype'})
         await this.$store.dispatch('updateCurrentTeacher',user)
+        this.$store.dispatch('getStudentSubmissions',user.uid)
       }
-      console.log("🚀 ~ file: App.vue ~ line 19 ~ auth.onAuthStateChanged ~ ,auth.currentUser", auth.currentUser)
-      console.log(user)
-      
-      
     })
   }
   

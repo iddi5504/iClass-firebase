@@ -16,23 +16,14 @@
 
 <script>
 import AppNav from "../components/appNav"
+import { mapGetters } from 'vuex'
 // import {bus} from '../main'
 export default {
     components:{
         AppNav
     },
-    data(){
-        return{
-            questionCode:""
-        }
-    },
-    async mounted(){
-            this.questionCode= await this.$store.state.questionCode;
-    },
     computed:{
-        // questionCode(){
-        //     return 
-        // }
+       ...mapGetters({questionCode:"QUESTIONCODE"})
     }
 }
 </script>
