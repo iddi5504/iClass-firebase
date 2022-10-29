@@ -69,10 +69,10 @@ export default {
   },
   computed:{
     answerInfo(){
-      return this.$store.getters.answerInfo
+      return this.$store.getters.ANSWERINFO
     },
     teacherName(){
-      return this.$store.getters.teacherName
+      return this.$store.getters.TEACHERNAME
     },
     submissionPresent(){
       let present=Boolean

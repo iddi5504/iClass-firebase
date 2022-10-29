@@ -34,10 +34,10 @@ export default {
     },
     computed: {
         initials() {
-            return this.$store.getters.initials;
+            return this.$store.getters.INITIALS;
         },
         email(){
-            return this.$store.getters.email;
+            return this.$store.getters.EMAIL;
         },
         name(){
             return this.$store.state.teacherName;

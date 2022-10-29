@@ -5,11 +5,9 @@ import App from './App.vue'
 import Routes from './routes/routes.js'
 import VueRouter from 'vue-router'
 import store from "./store/store"
-import axios from 'axios'
 import Vuex from 'vuex'
 import loadingScreen from './components/loadingScreen'
 Vue.use(Vuex)
-Vue.use(axios)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 export const bus=new Vue({})

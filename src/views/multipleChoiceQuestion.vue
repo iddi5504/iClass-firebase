@@ -90,14 +90,14 @@ export default {
     },
     questions: {
       get() {
-        return store.getters.questionCreation
+        return store.getters.QUESTIONCREATION
       },
       set(question) {
-        store.commit("addQuestion", question)
+        store.commit("setAddQuestion", question)
       }
     },
     questionCode() {
-      return this.$store.getters.questionCode
+      return this.$store.getters.QUESTIONCODE
     }
 
   },

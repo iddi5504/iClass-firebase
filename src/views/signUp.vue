@@ -85,7 +85,7 @@ export default {
                         this.load=!this.load
                         const userInfo={teacherId:user.user.uid,teacherName:this.teacherName}
                         console.log(userInfo)
-                        this.$store.commit('teacherInfo',userInfo)
+                        this.$store.commit('setTeacherInfo',userInfo)
                         this.$router.push({name:'questiontype'})
                     })
 

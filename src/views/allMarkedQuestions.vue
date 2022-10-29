@@ -6,10 +6,10 @@
                 <div>
                     <h3>Total score</h3>
                 </div>
-                <div class="h2">{{score}}</div>
+                <div class="h2">{{SCORE}}</div>
             </div>
             <div class="body d-flex flex-column align-items-center w-100">
-                <div v-for="(answeredquestion,questionIndex) in answeredQuestionData.questions" :key="questionIndex"
+                <div v-for="(answeredquestion,questionIndex) in ANSWEREDQUESTIONDATA.questions" :key="questionIndex"
                     class="w-100">
                     <transition name="show">     
                         <markedQuestion :answeredquestion="answeredquestion" :questionIndex="questionIndex">
@@ -56,7 +56,7 @@ export default {
             console.log("taking the answer from the store ")
             this.load=!this.load
         })
-        console.log("🚀 ~ file: allMarkedQuestions.vue ~ line 45 ~ created ~ this.questionCode", this.questionCode)
+        console.log("🚀 ~ file: allMarkedQuestions.vue ~ line 45 ~ created ~ this.questionCode", this.QUESTIONCODE)
     },
     computed: {
         // the answeredQuestionData for marking 
@@ -66,7 +66,7 @@ export default {
             return this.$route.params.QuestionId
         },
        
-        ...mapGetters(['questionCode','studentName','score','answeredQuestionData'])
+        ...mapGetters(['QUESTIONCODE','STUDENTNAME','SCORE','ANSWEREDQUESTIONDATA'])
 
     },
     watch:{

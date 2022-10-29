@@ -38,81 +38,81 @@ export default new Vuex.Store({
     },
     getters: {
         // questions for user to answer
-        questions(state) {
+        QUESTIONS(state) {
             return state.answerQuestions
         },
-        questionTitle(state) {
+        QUESTIONTITLE(state) {
             return state.questionTitle
         },
-        answeredQuestionData(state) {
+        ANSWEREDQUESTIONDATA(state) {
             return state.questionAnswers
         },
-        score(state) {
+        SCORE(state) {
             return state.score
         },
-        studentName(state) {
+        STUDENTNAME(state) {
             return state.studentName
         },
-        submissions(state) {
+        SUBMISSIONS(state) {
             return state.testSubmissionsWithStudentNames
         },
-        questionCode(state) {
+        QUESTIONCODE(state) {
             return state.questionCode
         },
-        teacherName(state) {
+        TEACHERNAME(state) {
             return state.teacherName
         },
-        questionCreation(state) {
+        QUESTIONCREATION(state) {
             return state.questions
         },
-        answerInfo(state) {
+        ANSWERINFO(state) {
             return state.answerInfo
         },
-        initials(state) {
+        INITIALS(state) {
             const name = state.teacherName
             let namelist = name.split(" ")
             try {
-                let firstInitial = namelist[0][0]
-                let secondInitial = namelist[1][0]
+                let firstInitial = namelist[0][0].toUpperCase()
+                let secondInitial = namelist[1][0].toUpperCase()
                 return `${firstInitial}.${secondInitial}`
             } catch (error) {
                 let firstInitial = namelist[0][0].toUpperCase()
                 return `${firstInitial}`
             }
         },
-        email(state){
+        EMAIL(state){
             return state.email
         }
     },
     mutations: {
-        answerInfo(state, answerInfo) {
+        setAnswerInfo(state, answerInfo) {
             state.answerInfo = answerInfo
         },
-        updateQuestionCode(state, id) {
+        setUpdateQuestionCode(state, id) {
             state.questionCode = id
         },
-        teacherInfo(state, teacherInfo) {
+        setTeacherInfo(state, teacherInfo) {
             state.teacherId = teacherInfo.teacherId
             state.teacherName = teacherInfo.teacherName
         },
 
-        addQuestion(state, question) {
+        setAddQuestion(state, question) {
             state.questions.push(question)
             console.log(state.questions)
         },
-        done(state, singleQuestionData) {
+        setDone(state, singleQuestionData) {
             const { question: question, questionIndex: questionIndex } = singleQuestionData;
             state.questions[questionIndex] = question
         },
 
-        recieveQuestions(state, questions) {
+        async setRecieveQuestions(state, questions) {
             // receive question data from server dispatched from answerQuestion component
-            state.answerQuestions = questions.data()
-            state.questionTitle = questions.data().questionTitle
-            state.teacherName = questions.data().teacherName
-            state.teacherId = questions.data().teacherId
+            state.answerQuestions =await questions.data()
+            state.questionTitle = await questions.data().questionTitle
+            state.teacherName =await questions.data().teacherName
+            state.teacherId =await questions.data().teacherId
         },
-        signup(state, signUpInfo_) {
+        setSignup(state, signUpInfo_) {
             state.teacherName = signUpInfo_.data.name
             state.teacherId = signUpInfo_.data.id
             state.testSubmissions = signUpInfo_.data.submissions
@@ -120,11 +120,11 @@ export default new Vuex.Store({
             state.signUpInfo = signUpInfo_
             console.error("🚀 ~ file: store.js ~ line 43 ~ signup ~ state.testSubmissions", state.testSubmissions)
         },
-        studentName(state, studentName) {
+        setStudentName(state, studentName) {
             console.warn("🚀 ~ file: store.js ~ line 48 ~ userLogIn ~ studentName", studentName)
             state.studentName = studentName
         },
-        teacherName(state, teacherName) {
+        setTeacherName(state, teacherName) {
             console.warn("🚀 ~ file: store.js ~ line 48 ~ userLogIn ~ studentName", teacherName)
             state.teacherName = teacherName
         },
@@ -147,15 +147,15 @@ export default new Vuex.Store({
             state.questionAnswers = questionAnswers
             state.questionCode = questionAnswers.id
         },
-        getStudentSubmissions(state, testSubmission) {
+        setStudentSubmissions(state, testSubmission) {
             console.log(testSubmission)
             state.testSubmissionsWithStudentNames.push(testSubmission)
 
         },
-        questionCode(state, id) {
+        setQuestionCode(state, id) {
             state.questionCode = id
         },
-        questionAnswersCode(state, id) {
+        setQuestionAnswersCode(state, id) {
             state.questionAnswersCode = id
         },
         setCurrentTeacher(state, user) {
@@ -176,7 +176,7 @@ export default new Vuex.Store({
                 })
         },
         studentName(context, studentName) {
-            context.commit('studentName', studentName)
+            context.commit('setStudentName', studentName)
         },
 
         // get question answers from the server
@@ -192,7 +192,7 @@ export default new Vuex.Store({
             // post all questions to the server
             addDoc(questions, questionData)
             .then((response) => {
-                context.commit('updateQuestionCode', response.id)
+                context.commit('setUpdateQuestionCode', response.id)
                 routes.push({name:'questionCode'})
 
                 })
@@ -201,19 +201,16 @@ export default new Vuex.Store({
 
         done(context, singleQuestionData) {
             // add new question to the list of questions
-            context.commit('done', singleQuestionData);
+            context.commit('setDone', singleQuestionData);
         },
 
-        recieveQuestions(context, localQuestionCode) {
+        async recieveQuestions(context, localQuestionCode) {
             // retrieve all questions frm firestore
-            context.commit('questionCode', localQuestionCode)
-            const question_ = doc(questions, localQuestionCode)
-            getDoc(question_)
-                .then((snapshot)=>{
-                    console.log("🚀 ~ file: store.js ~ line 152 ~ .then ~ snapshot", snapshot.data())
-                    context.commit('recieveQuestions', snapshot);
-
-                })
+            context.commit('setQuestionCode', localQuestionCode)
+            const question_ =await doc(questions, localQuestionCode)
+            const snapshot=await getDoc(question_)
+            console.log("🚀 ~ file: store.js ~ line 152 ~ .then ~ snapshot", snapshot.data())
+            context.commit('setRecieveQuestions', snapshot);
 
 
         },
@@ -221,7 +218,7 @@ export default new Vuex.Store({
         submitAnswers(context, answeredQuestionData) {
             addDoc(questionAnswers, answeredQuestionData)
                 .then((res) => {
-                    context.commit('questionAnswersCode', res.id)
+                    context.commit('setQuestionAnswersCode', res.id)
                     context.commit("setQuestionAnswers", answeredQuestionData)
                 })
         },
@@ -235,12 +232,12 @@ export default new Vuex.Store({
                         answerInfo.push({ id: question.id, studentName: question.data().studentName, questionTitle: question.data().questionTitle })
                     })
                     console.log(answerInfo)
-                    context.commit('answerInfo', answerInfo)
+                    context.commit('setAnswerInfo', answerInfo)
                 })
 
         },
         addQuestion(context) {
-            context.commit("addQuestion", Math.random().toString().slice(2, 8))
+            context.commit("setAddQuestion", Math.random().toString().slice(2, 8))
         }
 
     }

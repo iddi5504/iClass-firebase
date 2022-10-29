@@ -66,14 +66,14 @@ export default {
         signIn() {
             if(this.email && this.password){
                 this.load = true
-                this.$store.commit('teacherName', this.teacherName)
+                this.$store.commit('setTeacherName', this.teacherName)
                 signInWithEmailAndPassword(auth,this.email,this.password)
                 .then(user=>{
                     const userUID=user.user.uid
                     getDoc(doc(users,userUID))
                     .then((snapshot)=>{
                         const userInfo={teacherId:snapshot.id,teacherName:snapshot.data().teacherName}
-                        this.$store.commit('teacherInfo',userInfo)
+                        this.$store.commit('setTeacherInfo',userInfo)
                         this.load=!this.load
                         this.$router.push({name:'questiontype'})
                     })

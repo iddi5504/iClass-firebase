@@ -54,7 +54,7 @@ const routes = [
     component: studentpage,
     children: [
      { 
-      path:'/studentpage/searchQuestion/:name',
+      path:'/studentpage/searchQuestion/',
       name:"searchQuestion",
       component: searchQuestion
     },
