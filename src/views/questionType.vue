@@ -58,6 +58,7 @@
 <script>
 import AppNav from "../components/appNav"
 import { bus } from '../main'
+import { mapGetters } from "vuex"
 export default {
   components: {
     AppNav
@@ -68,12 +69,8 @@ export default {
     }
   },
   computed:{
-    answerInfo(){
-      return this.$store.getters.ANSWERINFO
-    },
-    teacherName(){
-      return this.$store.getters.TEACHERNAME
-    },
+    ...mapGetters({answerInfo:'ANSWERINFO',teacherName:'TEACHERNAME'}),
+
     submissionPresent(){
       let present=Boolean
       if(this.answerInfo.length>0){

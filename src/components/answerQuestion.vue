@@ -51,15 +51,14 @@ export default {
       score: '',
       submitted: false,
       answeredQuestionData: [],
-      load: false,
-      questions:[]
+      load: false
     }
   },
   computed: {
-    // questions() {
-    //   return this.$store.state.answerQuestions
-    // },
-    ...mapGetters(['QUESTIONTITLE', 'TEACHERNAME', 'STUDENTNAME','ANSWERQUESTIONS'])
+    questions() {
+      return this.$store.state.answerQuestions
+    },
+    ...mapGetters(['QUESTIONTITLE', 'TEACHERNAME', 'STUDENTNAME'])
   },
   methods: {
     submit() {

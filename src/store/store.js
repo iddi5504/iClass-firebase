@@ -34,7 +34,8 @@ export default new Vuex.Store({
         questionCode: null,
         localQuestionCode: "",
         answerInfo: [],
-        email:''
+        email:'',
+        isAuthenticated:false
     },
     getters: {
         // questions for user to answer
@@ -71,13 +72,15 @@ export default new Vuex.Store({
         INITIALS(state) {
             const name = state.teacherName
             let namelist = name.split(" ")
-            try {
-                let firstInitial = namelist[0][0].toUpperCase()
-                let secondInitial = namelist[1][0].toUpperCase()
-                return `${firstInitial}.${secondInitial}`
-            } catch (error) {
-                let firstInitial = namelist[0][0].toUpperCase()
-                return `${firstInitial}`
+            if(name){
+                try {
+                    let firstInitial = namelist[0][0].toUpperCase()
+                    let secondInitial = namelist[1][0].toUpperCase()
+                    return `${firstInitial}.${secondInitial}`
+                } catch (error) {
+                    let firstInitial = namelist[0][0].toUpperCase()
+                    return `${firstInitial}`
+                }
             }
         },
         EMAIL(state){
@@ -162,6 +165,7 @@ export default new Vuex.Store({
             state.teacherId = user.id
             state.teacherName = user.data().teacherName
             state.email= user.data().email
+            state.isAuthenticated=true
         }
     },
 
@@ -219,8 +223,9 @@ export default new Vuex.Store({
                 })
         },
 
-        getStudentSubmissions(context) {
-            const teacherQuestions = query(questionAnswers, where('teacherId', '==', context.state.teacherId))
+        getStudentSubmissions(context,id) {
+            const teacherQuestions = query(questionAnswers, where('teacherId', '==', id))
+            console.log("🚀 ~ file: store.js ~ line 230 ~ getStudentSubmissions ~ teacherQuestions", teacherQuestions)
             let answerInfo = []
             getDocs(teacherQuestions)
                 .then((snapshot) => {

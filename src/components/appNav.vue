@@ -6,7 +6,7 @@
         <div>
             <router-link to="/"><i class="bi bi-house"></i></router-link>
         </div>
-        <div class="initials" @click="showProfileInfo_">{{ initials }}</div>
+        <div v-if="isAuthenticated" class="initials" @click="showProfileInfo_">{{ initials }}</div>
         <transition name="showMenu">
             <ul v-show="showProfileInfo" class="profileInfo">
                 <li>{{name}}</li>
@@ -25,6 +25,7 @@
 import { auth } from '../firebase/firebase'
 import { signOut } from 'firebase/auth';
 import { bus } from '../main'
+import { mapGetters } from 'vuex';
 export default {
     data(){
         return {
@@ -33,15 +34,14 @@ export default {
         }
     },
     computed: {
-        initials() {
-            return this.$store.getters.INITIALS;
-        },
-        email(){
-            return this.$store.getters.EMAIL;
-        },
+       
         name(){
             return this.$store.state.teacherName;
-        }
+        },
+        isAuthenticated(){
+            return this.$store.state.isAuthenticated
+        },
+        ...mapGetters({email:'EMAIL',initials:'INITIALS'})
     },
     methods:{
         showProfileInfo_(){
