@@ -1,25 +1,29 @@
 <template>
   <div class="body d-flex flex-column align-items-center w-100">
-    
+
     <!-- body -->
-  <transition name="switch" mode="out-in" >
-   <div key="1" class="body d-flex flex-column align-items-center w-100" v-if="!submitted">
-    <h3>{{questionTitle}}</h3>
-    <div class="body d-flex flex-column align-items-center w-100">
-      <div v-for="(question,questionIndex) in questions.Questions" :key="questionIndex" class="w-100">
-        <singleQuestion :question="question" :questionIndex="questionIndex" :correctAnswer="question.answer"></singleQuestion>
+    <transition name="switch" mode="out-in">
+      <div key="1" class="body d-flex flex-column align-items-center w-100" v-if="!submitted">
+        <h3>{{ questionTitle }}</h3>
+        <div class="body d-flex flex-column align-items-center w-100">
+          <div v-for="(question, questionIndex) in questions.Questions" :key="questionIndex" class="w-100">
+            <singleQuestion :question="question" :questionIndex="questionIndex" :correctAnswer="question.answer">
+            </singleQuestion>
+          </div>
+        </div>
+        <button @click="submit" class="submit">
+          Submit
+        </button>
       </div>
-    </div>
-    <button @click="submit" class="submit">
-      Submit
-    </button>
-   </div>
-   <!-- success message -->
-    <div key="2" v-if="submitted" class="p-3 text-center d-flex flex-column justify-content-center align-items-center h-100">
-      <h2 style="color:var(--titleColor);" class="">You have successfull answer {{teacherName}}'s test </h2>
-      <button @click="showAnswers" class="button m-5">Show anwers</button>
-  </div>
-</transition>
+      <!-- success message -->
+      <div key="2" v-if="submitted"
+        class="p-3 text-center d-flex flex-column justify-content-center align-items-center h-100">
+        <h2 style="color:var(--titleColor);" class="">You have successfull answer {{ teacherName }}'s test </h2>
+        <button @click="showAnswers" class="button m-5">Show anwers</button>
+      </div>
+    </transition>
+    <loadingScreen v-if="load" :message="'Submitting answers'"></loadingScreen>
+
   </div>
 </template>
 
@@ -40,28 +44,45 @@ export default {
       answers: [],
       score: '',
       submitted: false,
-      answeredQuestionData:[],
+      answeredQuestionData: [],
+      load: false
     }
+  },
+  computed: {
+    questions() {
+      return this.$store.state.answerQuestions
+    },
+    ...mapGetters(['questionTitle', 'teacherName', 'studentName'])
   },
   methods: {
     submit() {
-      const answeredQuestionData={
-          questionTitle:this.$store.state.questionTitle,
-          studentName:this.$store.state.studentName,
-          teacherName:this.$store.state.teacherName,
-          teacherId:this.$store.state.teacherId,
-          questions:this.answeredQuestionData
+      this.load = !this.load
+      const answeredQuestionData = {
+        questionTitle: this.$store.state.questionTitle,
+        studentName: this.$store.state.studentName,
+        teacherName: this.$store.state.teacherName,
+        teacherId: this.$store.state.teacherId,
+        questions: this.answeredQuestionData
       }
       console.warn("🚀 ~ file: answerQuestion.vue ~ line 62 ~ submit ~ answeredQuestionData", answeredQuestionData)
 
       // dispatch answer data to store      
-      store.dispatch("submitAnswers",answeredQuestionData)
-      .then(() =>{
-        this.submitted=true
-      })
+      store.dispatch("submitAnswers", answeredQuestionData)
+        .then(() => {
+          this.load = !this.load
+          this.submitted = true
+        })
     },
-    showAnswers(){
-      this.$router.push("/studentpage/markedQuestions/"+this.$store.state.questionAnswersCode)
+    showAnswers() {
+      this.$router.push("/studentpage/markedQuestions/" + this.$store.state.questionAnswersCode)
+    },
+    getQuestions() {
+      var questionCode = this.$route.params.questionCode
+      store.dispatch("recieveQuestions", questionCode)
+        .then(() => {
+          // this.$forceUpdate()
+        
+        })
     }
   },
   created() {
@@ -71,38 +92,34 @@ export default {
       // console.log(this.answers)
 
     })
+    //recieve questions from the server
+    this.getQuestions()
     // recieve emiition from singleQuestion
-    bus.$on("answeredQuestion",(data) => {
+    bus.$on("answeredQuestion", (data) => {
       this.answeredQuestionData[data.questionIndex] = data
       console.table(this.answeredQuestionData)
     })
-    //recieve questions from the server
-   var questionCode = this.$route.params.questionCode
-    store.dispatch("recieveQuestions", questionCode)
-   
-  },
+  }
   
-  computed:{
-
-    ...mapGetters(['questionTitle','questions','teacherName','studentName'])
-  },
 }
 </script>
 
 <style scoped>
 .switch-move,
 .switch-enter-active,
-.switch-leave-active{
-    transform: translateX(0);
-    opacity: 1;
-    transition: all 0.5s ease-in-out;
-  
+.switch-leave-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+
 }
-.switch-enter{
+
+.switch-enter {
   opacity: 0;
   transform: translateX(-100%) !important;
 }
-.switch-leave-to{
+
+.switch-leave-to {
   opacity: 0;
   transform: translateX(100%);
 
@@ -124,5 +141,4 @@ export default {
   border-radius: 10px;
   box-sizing: content-box;
 }
-
 </style>

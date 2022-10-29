@@ -2,7 +2,7 @@
   <div class="body d-flex flex-column justify-content-around align-items-center w-100">
     <div class="d-flex text-center flex-column align-items-center">
       <img src="../assets/test.png" class="coloredicon" alt="">
-      <div style="color:var(--titleColor);" class="h3">Ready to take the test {{studentName}} ?</div>
+      <div style="color:var(--titleColor);" class="h3">Ready to take the test {{ studentName }} ?</div>
     </div>
     <!-- find form -->
     <div style="padding:20px; " class="d-flex flex-column justify-content-around align-items-center">
@@ -18,6 +18,7 @@
       <!-- find test button -->
       <button class="findtestbutton" @click="findTest">Find Test</button>
     </div>
+    <loadingScreen v-if="load" :message="'Searching for Test'"></loadingScreen>
 
   </div>
 </template>
@@ -32,14 +33,14 @@ export default {
       questionCode: null,
       questions: "",
       questionTitle: "",
+      load: false
     }
   },
   methods: {
     findTest() {
-     this.$store.dispatch("recieveQuestions", this.questionCode)
-      .then(()=>{
-        this.$router.push("/studentpage/answerQuestion/" + this.questionCode)
-      })
+      this.load = true
+      this.$router.push("/studentpage/answerQuestion/" + this.questionCode)
+      this.load = !this.load
     }
   },
   created() {
@@ -80,7 +81,7 @@ export default {
   font-weight: 700;
 }
 
-.bi-search{
+.bi-search {
   position: absolute;
   top: 6px;
   font-size: 1.5rem;

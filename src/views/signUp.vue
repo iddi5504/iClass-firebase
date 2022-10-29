@@ -32,7 +32,7 @@
         <button @click="signup()" class="m-2">Sign Up</button>
 
 
-        <h5 class="text-center p-2">
+        <h5 style="font-size: 1rem;" class="text-center p-2">
             <div>
                 Already have an account
             </div>
@@ -42,6 +42,8 @@
                </router-link>
             </div>
         </h5>
+        <!-- load screen -->
+        <loadingScreen v-if="load" :message="'Signing Up'"></loadingScreen>
     </div>
 </template>
 
@@ -62,7 +64,8 @@ export default {
         return {
             email: "",
             password: "",
-            teacherName: ""
+            teacherName: "",
+            load:false
 
         }
     },
@@ -70,6 +73,7 @@ export default {
     methods: {
         signup() {
             if(this.email && this.password && this.teacherName){
+                this.load=!this.load
                 createUserWithEmailAndPassword(auth,this.email,this.password)
                 .then(user=>{
                     const userUID=user.user.uid
@@ -78,6 +82,7 @@ export default {
                         email:this.email,
                     })
                     .then(()=>{
+                        this.load=!this.load
                         const userInfo={teacherId:user.user.uid,teacherName:this.teacherName}
                         console.log(userInfo)
                         this.$store.commit('teacherInfo',userInfo)
@@ -111,7 +116,7 @@ export default {
 
 <style scoped>
 .body {
-    max-height: 82%;
+    max-height: 60%;
     height: 100%;
 }
 
@@ -126,7 +131,7 @@ button {
     border: none;
     box-shadow: 0px 0px 4px black;
     border-radius: 4px;
-    font-size: 20px;
+    font-size: 16px;
     background: var(--brandcolor);
     font-weight: 700;
 }
@@ -153,7 +158,7 @@ a {
 
 .bi{
     position: absolute;
-    top: 4px;
+    top: -4px;
     font-size: 1.6rem;
     left: 12px;
     padding: 5px;

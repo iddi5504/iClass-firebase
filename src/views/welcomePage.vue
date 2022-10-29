@@ -134,7 +134,7 @@ export default {
         .image{
             background-position: center;
             min-width: 323px;
-            height: 361px;
+            height: 258px;
         }
     }
 </style>

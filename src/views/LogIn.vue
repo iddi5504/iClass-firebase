@@ -6,7 +6,7 @@
         <div class="inputfields d-flex flex-column align-items-start justify-content-around">
             <label for="username">Email</label>
             <div style="position:relative;">
-                <input @keyup.enter="signup" v-model.lazy="email" type="text" id="username">
+                <input @keyup.enter="signIn" v-model.lazy="email" type="text" id="username">
                 <i class="bi bi-envelope"></i>
             </div>
 
@@ -15,7 +15,7 @@
         <div class="inputfields d-flex flex-column align-items-start justify-content-around">
             <label for="password">Password</label>
             <div style="position:relative;">
-                <input v-model.lazy="password" type="password" id="text">
+                <input @keyup.enter="signIn" v-model.lazy="password" type="password" id="text">
                 <i class="bi bi-lock"></i>
             </div>
         </div>
@@ -34,6 +34,8 @@
                 Sign In
             </div>
         </h5>
+         <!-- load screen -->
+         <loadingScreen v-if="load" :message="'Signing In'"></loadingScreen>
     </div>
 </template>
 
@@ -54,7 +56,8 @@ export default {
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            load:false
 
         }
     },
@@ -62,6 +65,7 @@ export default {
     methods: {
         signIn() {
             if(this.email && this.password){
+                this.load = true
                 this.$store.commit('teacherName', this.teacherName)
                 signInWithEmailAndPassword(auth,this.email,this.password)
                 .then(user=>{
@@ -70,6 +74,7 @@ export default {
                     .then((snapshot)=>{
                         const userInfo={teacherId:snapshot.id,teacherName:snapshot.data().teacherName}
                         this.$store.commit('teacherInfo',userInfo)
+                        this.load=!this.load
                         this.$router.push({name:'questiontype'})
                     })
 
@@ -100,7 +105,7 @@ export default {
 
 <style scoped>
 .body {
-    max-height: 82%;
+    max-height: 60%;
     height: 100%;
 }
 
@@ -115,7 +120,7 @@ button {
     border: none;
     box-shadow: 0px 0px 4px black;
     border-radius: 4px;
-    font-size: 20px;
+    font-size: 1rem;
     background: var(--brandcolor);
     font-weight: 700;
 }
@@ -138,13 +143,14 @@ a {
 .note {
     padding: 10px;
     max-width: 34ch;
+    font-size: 1rem;
 }
 
 .bi{
     position: absolute;
-    top: 4px;
+    top: -3px;
     font-size: 1.6rem;
-    left: 12px;
+    left: 10px;
     padding: 5px;
 }
 </style>

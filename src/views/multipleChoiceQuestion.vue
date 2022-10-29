@@ -6,15 +6,16 @@
       <button @click="addQuestion" class="addquestionbutton">
         Add Question
       </button>
-      <transition-group  class="appQuestion" name="animate" >
-        <appQuestion v-for="(question,questionIndex) in question" :key="question.id" :questionIndex="questionIndex" :question="question">
+      <transition-group class="appQuestion" name="animate">
+        <appQuestion v-for="(question, questionIndex) in question" :key="question.id" :questionIndex="questionIndex"
+          :question="question">
         </appQuestion>
       </transition-group>
       <button v-show="showComplete" @click="questionsComplete" class="addquestionbutton">
         Done
       </button>
-
     </div>
+    <loadingScreen v-if="load" :message="'Creating test'"></loadingScreen>
   </div>
 </template>
 
@@ -22,7 +23,7 @@
 import { bus } from "../main.js"
 import appQuestion from "../components/appQuestion"
 import store from "../store/store"
-import AppNav from "../components/appNav" 
+import AppNav from "../components/appNav"
 export default {
   components: {
     appQuestion,
@@ -37,44 +38,36 @@ export default {
       numberOfQuestions: 0,
       questioncomplete: false,
       questionTitle: "",
-      question:'',
-      questionCode_:''
+      question: '',
+      questionCode_: '',
+      load: false
       // currentQuestion:[]
     }
   },
   methods: {
     addQuestion() {
       // this.numberOfQuestions = this.numberOfQuestions + 1;
-      this.questions={id:Math.random().toString().slice(2,9)}
-     
-    },
-    questionsComplete() {
-      // const characters = "1 m 7 6 4 9 n p  3 i c d 4 5 6 a b o e f g h k l j q r 7 k l 0 k l s t u v w x y z".split(" ")
-      // const randomized = []
-      // for (let index = 0; index < 10; index++) {
-      //   let characterIndex = Math.random().toString().slice(5, 6)
-      //   randomized.push(characters[characterIndex])
+      this.questions = { id: Math.random().toString().slice(2, 9) }
 
-      // }
-      console.log(store.state.teacherName)
+    },
+    async questionsComplete() {
+      this.load = !this.load
       const questionData = {
-        teacherName:store.state.teacherName,
-        teacherId:store.state.teacherId,
+        teacherName: store.state.teacherName,
+        teacherId: store.state.teacherId,
         questionTitle: this.questionTitle,
         Questions: this.questions
       }
-        // dispatch the data to store and send to the server
-        store.dispatch("questionsComplete", questionData)
-        .then(()=>{
-          this.$router.push("/questiontype/multiplechoiceQ/questionCode")
-
-        })
-        
+      // dispatch the data to store and send to the server
+      await store.dispatch("questionsComplete", questionData)
+      this.load = !this.load
+      this.$router.push("/questiontype/multiplechoiceQ/questionCode")
+      
 
     }
 
   },
-  beforeUpdate(){
+  beforeUpdate() {
 
   },
   created() {
@@ -86,24 +79,24 @@ export default {
         this.questions.splice(questionIndex, 1);
         // console.log(this.questions)
       });
-      this.question=this.questions
+    this.question = this.questions
   },
- 
+
 
   computed: {
     showComplete() {
       return this.question.length > 0 ? true : false;
 
     },
-    questions:{
-      get(){
+    questions: {
+      get() {
         return store.getters.questionCreation
       },
-      set(question){
-        store.commit("addQuestion",question)
+      set(question) {
+        store.commit("addQuestion", question)
       }
     },
-    questionCode(){
+    questionCode() {
       return this.$store.getters.questionCode
     }
 
@@ -114,20 +107,22 @@ export default {
 </script>
 
 <style scoped>
+.animate-enter-active {
+  transition: all 0.5s ease-in-out;
+}
 
-.animate-enter-active{
-    transition: all 0.5s ease-in-out; 
-}
 .animate-move,
-.animate-leave-active{
-    transition: all 0.5s ease-in-out; 
+.animate-leave-active {
+  transition: all 0.5s ease-in-out;
 }
-.animate-enter{
+
+.animate-enter {
   transform: translateX(-100%);
   opacity: 0;
 
 }
-.animate-leave-to{
+
+.animate-leave-to {
   transform: translateX(100%);
   opacity: 0;
 
@@ -144,19 +139,21 @@ export default {
   text-align: center;
 
 }
-.appQuestion{
+
+.appQuestion {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
 }
-input:hover{
-  border:1px solid var(--secondaryBackgroundColor);
+
+input:hover {
+  border: 1px solid var(--secondaryBackgroundColor);
   transition: all 0.5s ease;
 
 }
 
-input:focus-within{
+input:focus-within {
   padding: 8px;
   font-size: 1.3rem;
   transition: all 0.5s ease;
@@ -169,7 +166,7 @@ input:focus-within{
 }
 
 .addquestionbutton {
-  background:var(--primaryBackgroundColor);
+  background: var(--primaryBackgroundColor);
   color: var(--textColor);
   font-size: 14px;
   outline: none;

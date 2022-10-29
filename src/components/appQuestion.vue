@@ -29,7 +29,7 @@
 import { bus } from "../main.js"
 import store from "../store/store"
 export default {
-    props:["questionIndex","question"],
+    props:["questionIndex"],
     data(){
         return {
             questiontext:"",

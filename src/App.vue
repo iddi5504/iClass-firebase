@@ -14,8 +14,15 @@ import { auth } from '../src/firebase/firebase'
 export default {
   store: store,
   created(){
-    auth.onAuthStateChanged(()=>{
-      this.$store.commit('updateTeacherId',auth.currentUser.uid)
+    auth.onAuthStateChanged(async (user)=>{
+      if(user){
+        // this.$router.push({name:'questiontype'})
+        await this.$store.dispatch('updateCurrentTeacher',user)
+      }
+      console.log("🚀 ~ file: App.vue ~ line 19 ~ auth.onAuthStateChanged ~ ,auth.currentUser", auth.currentUser)
+      console.log(user)
+      
+      
     })
   }
   
@@ -73,15 +80,16 @@ nav {
 
 label {
   color: white;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
+  margin: 3px;
 }
 
 input {
-  height: 50px;
+  height: 42px;
   width: 100%;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 4px;
   margin: 5px;
   border: none;
   font-size: 23px;
@@ -117,6 +125,7 @@ button {
   background: var(--brandcolor);
   font-weight: 700;
   color: black;
+  margin: 10px;
 }
 
 .questioncontainer{

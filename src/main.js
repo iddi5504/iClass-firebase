@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import store from "./store/store"
 import axios from 'axios'
 import Vuex from 'vuex'
+import loadingScreen from './components/loadingScreen'
 Vue.use(Vuex)
 Vue.use(axios)
 Vue.use(VueRouter)
@@ -14,13 +15,13 @@ Vue.config.productionTip = false
 export const bus=new Vue({})
 const router = new VueRouter({
   routes:Routes,
-  mode:"hash"
+  mode:"history"
 })
 /* eslint-disable no-new */
+Vue.component('loadingScreen',loadingScreen)
 new Vue({
-  store,
-  el: '#app',
+  el: "#app",
   router,
-  components: { App },
-  template: '<App/>'
+  store,
+  render: h => h(App)
 })

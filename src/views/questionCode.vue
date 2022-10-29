@@ -16,7 +16,6 @@
 
 <script>
 import AppNav from "../components/appNav"
-import store from "../store/store"
 // import {bus} from '../main'
 export default {
     components:{
@@ -24,16 +23,15 @@ export default {
     },
     data(){
         return{
-            questionCode:''
+            questionCode:""
         }
     },
-    created(){
-        this.questionCode=store.getters.questionCode;
-        
+    async mounted(){
+            this.questionCode= await this.$store.state.questionCode;
     },
     computed:{
         // questionCode(){
-        //     return this.$route.params.id
+        //     return 
         // }
     }
 }

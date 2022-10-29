@@ -7,7 +7,7 @@
         <div class="inputfields d-flex flex-column align-items-start justify-content-around">
             <label for="username">Student's name</label>
             <div style="position:relative;">
-                <input @keyup.enter="signup" v-model.lazy="studentName" type="text" id="username">
+                <input @keyup.enter="takeTest" v-model.lazy="studentName" type="text" id="username">
                 <i class="bi bi-blockquote-right"></i>
             </div>
         </div>

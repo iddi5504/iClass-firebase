@@ -35,6 +35,9 @@
 
     <div key="2" v-if="active=='submittedTest'" class="body d-flex  justify-content-start flex-column align-items-ceneter text-center w-100">
       <h3>Submitted Tests</h3>
+      <div  v-if="!submissionPresent" class="h3 h-100 d-flex justify-content-center flex-column align-items-center text-center">
+        No submissions yet
+      </div>
       <div class="w-100" v-for="(answerInfo,submissionIndex) in answerInfo" :key="submissionIndex">
         <router-link class=" d-flex  justify-content-around flex-column align-items-center text-center w-100" :to="'/studentpage/markedQuestions/'+answerInfo.id">
           <div class=" d-flex  justify-content-around flex-column align-items-center text-center w-100">
@@ -53,8 +56,8 @@
 </template>
 
 <script>
-import store from "../store/store"
 import AppNav from "../components/appNav"
+import { bus } from '../main'
 export default {
   components: {
     AppNav
@@ -66,17 +69,32 @@ export default {
   },
   computed:{
     answerInfo(){
-      return store.getters.answerInfo
+      return this.$store.getters.answerInfo
     },
     teacherName(){
-      return store.getters.teacherName
+      return this.$store.getters.teacherName
     },
+    submissionPresent(){
+      let present=Boolean
+      if(this.answerInfo.length>0){
+        present= true
+      }else{
+        present= false
+      }
+      
+      return present
+    }
 
   },
   created(){
     // get the id of the submission made by the student
     
-    store.dispatch("getStudentSubmissions")
+    this.$store.dispatch("getStudentSubmissions")
+    bus.$on(
+      'showSubmissions',()=>{
+        this.active='submittedTest'
+      }
+    )
 
   },
   methods:{
@@ -129,6 +147,7 @@ export default {
     align-items: center;
     display: flex;
     justify-content: center;
+    cursor: pointer;
    
   }
   .section div h4{
@@ -160,7 +179,7 @@ export default {
     font-size: 20px;
     font-weight: 500;
     padding: 11px;
-    margin: 17px 10px;
+    margin: 7px 10px;
     height: 100px;
     text-align: center;
     display: flex;

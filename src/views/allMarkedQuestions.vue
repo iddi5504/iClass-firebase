@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-
+    <loadingScreen v-if="load" :message="'Retrieving answers'"></loadingScreen>
     </div>
 
 </template>
@@ -37,16 +37,24 @@ export default {
         return {
             submitted: false,
             showAnswers: false,
-            answers:[]
+            answers:[],
+            load:false
 
         }
     },
+    beforeCreate(){
+        
+    },
+    mounted(){
+        
+    },
     created() {
-        console.warn("🚀 ~ file: allMarkedQuestions.vue ~ line 45 ~ created ~ this.questionAnswersCode", this.questionAnswersCode)
         // get question from store from database
+        this.load=!this.load
         store.dispatch("getQuestionAnswers", this.questionAnswersCode)
         .then(() => {
             console.log("taking the answer from the store ")
+            this.load=!this.load
         })
         console.log("🚀 ~ file: allMarkedQuestions.vue ~ line 45 ~ created ~ this.questionCode", this.questionCode)
     },
