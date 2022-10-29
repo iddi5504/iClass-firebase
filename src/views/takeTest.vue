@@ -35,6 +35,7 @@ export default {
             .then(()=>{
                 this.studentName ? this.$router.push({name:'searchQuestion'}) : console.log('fill out your name')
             })
+            
         }
     }
 }

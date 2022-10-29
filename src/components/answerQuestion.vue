@@ -79,13 +79,10 @@ export default {
     getQuestions() {
       var questionCode = this.$route.params.questionCode
       store.dispatch("recieveQuestions", questionCode)
-        .then(() => {
-          // this.$forceUpdate()
-        
-        })
+      
     }
   },
-  created() {
+  mounted() {
     // recieve user choice data from singleQuestion components
     bus.$on("choice", (choice) => {
       this.answers[choice.questionIndex] = choice
@@ -93,6 +90,7 @@ export default {
 
     })
     //recieve questions from the server
+    store.dispatch("recieveQuestions", this.$route.params.questionCode)
     this.getQuestions()
     // recieve emiition from singleQuestion
     bus.$on("answeredQuestion", (data) => {
