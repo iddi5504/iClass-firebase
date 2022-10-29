@@ -21,8 +21,6 @@ export default {
       }
       console.log("🚀 ~ file: App.vue ~ line 19 ~ auth.onAuthStateChanged ~ ,auth.currentUser", auth.currentUser)
       console.log(user)
-      
-      
     })
   }
   

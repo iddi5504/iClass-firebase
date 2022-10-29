@@ -21,9 +21,9 @@ export default new Vuex.Store({
         studentName: "",
         teacherName: "",
         teacherId: "",
-        questionsIncomplete: [{}],
+        questionsIncomplete: [],
         questions: [],
-        answerQuestions: [{}],
+        answerQuestions: [],
         questionTitle: "",
         questionAnswersCode: "",
         questionAnswers: [],
@@ -107,7 +107,7 @@ export default new Vuex.Store({
 
         async setRecieveQuestions(state, questions) {
             // receive question data from server dispatched from answerQuestion component
-            state.answerQuestions =await questions.data()
+            state.answerQuestions =await questions.data().Questions
             state.questionTitle = await questions.data().questionTitle
             state.teacherName =await questions.data().teacherName
             state.teacherId =await questions.data().teacherId
@@ -204,15 +204,11 @@ export default new Vuex.Store({
             context.commit('setDone', singleQuestionData);
         },
 
-        async recieveQuestions(context, localQuestionCode) {
+        async recieveQuestions(context, {question,questionCode}) {
             // retrieve all questions frm firestore
-            context.commit('setQuestionCode', localQuestionCode)
-            const question_ =await doc(questions, localQuestionCode)
-            const snapshot=await getDoc(question_)
-            console.log("🚀 ~ file: store.js ~ line 152 ~ .then ~ snapshot", snapshot.data())
-            context.commit('setRecieveQuestions', snapshot);
-
-
+            context.commit('setQuestionCode', questionCode)
+            context.commit('setRecieveQuestions', question)
+        
         },
 
         submitAnswers(context, answeredQuestionData) {

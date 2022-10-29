@@ -9,7 +9,7 @@
                 <div class="h2">{{SCORE}}</div>
             </div>
             <div class="body d-flex flex-column align-items-center w-100">
-                <div v-for="(answeredquestion,questionIndex) in ANSWEREDQUESTIONDATA.questions" :key="questionIndex"
+                <div v-for="(answeredquestion,questionIndex) in answeredQuestionData.questions" :key="questionIndex"
                     class="w-100">
                     <transition name="show">     
                         <markedQuestion :answeredquestion="answeredquestion" :questionIndex="questionIndex">
@@ -28,6 +28,13 @@ import markedQuestion from "../components/markedQuestion"
 import { mapGetters } from 'vuex'
 import store from "../store/store"
 import AppNav from "../components/appNav"
+const questionAnswers = collection(firestore, "questionAnswers")
+import { firestore } from '../firebase/firebase'
+import {
+  collection,
+  doc,
+  getDoc
+} from 'firebase/firestore'
 export default {
     components: {
         markedQuestion,
@@ -38,7 +45,8 @@ export default {
             submitted: false,
             showAnswers: false,
             answers:[],
-            load:false
+            load:false,
+            answeredQuestionData:[]
 
         }
     },
@@ -49,6 +57,12 @@ export default {
         
     },
     created() {
+        const thisQuestionAnswers = doc(questionAnswers, this.questionAnswersCode)
+            getDoc(thisQuestionAnswers)
+                .then((questionAnswers_) => {
+                    this.answeredQuestionData = questionAnswers_.data()
+                })
+
         // get question from store from database
         this.load=!this.load
         store.dispatch("getQuestionAnswers", this.questionAnswersCode)
@@ -66,7 +80,7 @@ export default {
             return this.$route.params.QuestionId
         },
        
-        ...mapGetters(['QUESTIONCODE','STUDENTNAME','SCORE','ANSWEREDQUESTIONDATA'])
+        ...mapGetters(['QUESTIONCODE','STUDENTNAME','SCORE'])
 
     },
     watch:{

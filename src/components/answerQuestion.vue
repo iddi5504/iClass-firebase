@@ -4,9 +4,9 @@
     <!-- body -->
     <transition name="switch" mode="out-in">
       <div key="1" class="body d-flex flex-column align-items-center w-100" v-if="!submitted">
-        <h3>{{ questionTitle }}</h3>
+        <h3>{{ QUESTIONTITLE }}</h3>
         <div class="body d-flex flex-column align-items-center w-100">
-          <div v-for="(question, questionIndex) in questions.Questions" :key="questionIndex" class="w-100">
+          <div v-for="(question, questionIndex) in questions" :key="questionIndex" class="w-100">
             <singleQuestion :question="question" :questionIndex="questionIndex" :correctAnswer="question.answer">
             </singleQuestion>
           </div>
@@ -32,7 +32,13 @@ import { bus } from "../main.js"
 import singleQuestion from "./singleQuestion"
 import store from "../store/store"
 import { mapGetters } from "vuex"
-
+import { firestore } from '../firebase/firebase'
+import {
+  collection,
+  doc,
+  getDoc
+} from 'firebase/firestore'
+const questions = collection(firestore, "questions")
 export default {
   components: {
     singleQuestion
@@ -45,14 +51,15 @@ export default {
       score: '',
       submitted: false,
       answeredQuestionData: [],
-      load: false
+      load: false,
+      questions:[]
     }
   },
   computed: {
-    questions() {
-      return this.$store.state.answerQuestions
-    },
-    ...mapGetters(['questionTitle', 'teacherName', 'studentName'])
+    // questions() {
+    //   return this.$store.state.answerQuestions
+    // },
+    ...mapGetters(['QUESTIONTITLE', 'TEACHERNAME', 'STUDENTNAME','ANSWERQUESTIONS'])
   },
   methods: {
     submit() {
@@ -77,9 +84,7 @@ export default {
       this.$router.push("/studentpage/markedQuestions/" + this.$store.state.questionAnswersCode)
     },
     getQuestions() {
-      var questionCode = this.$route.params.questionCode
-      store.dispatch("recieveQuestions", questionCode)
-      
+     
     }
   },
   mounted() {
@@ -90,15 +95,23 @@ export default {
 
     })
     //recieve questions from the server
-    store.dispatch("recieveQuestions", this.$route.params.questionCode)
     this.getQuestions()
+    var questionCode = this.$route.params.questionCode
+      getDoc(doc(questions,questionCode))
+        .then((question) => {
+          console.log(question.data())
+          // store.dispatch("recieveQuestions", {question:question,questionCode:questionCode});
+          this.questions=question.data().Questions
+        })
+
+
     // recieve emiition from singleQuestion
     bus.$on("answeredQuestion", (data) => {
       this.answeredQuestionData[data.questionIndex] = data
       console.table(this.answeredQuestionData)
     })
   }
-  
+
 }
 </script>
 
