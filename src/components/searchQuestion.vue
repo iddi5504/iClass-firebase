@@ -47,7 +47,7 @@ export default {
 
   },
   computed: {
-    ...mapGetters(['studentName'])
+    ...mapGetters({studentName:'STUDENTNAME'})
   }
 }
 </script>

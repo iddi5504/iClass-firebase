@@ -52,7 +52,7 @@ export default {
     questions() {
       return this.$store.state.answerQuestions
     },
-    ...mapGetters(['QUESTIONTITLE', 'TEACHERNAME', 'STUDENTNAME'])
+    ...mapGetters({questionTitle:'QUESTIONTITLE', teacherName:'TEACHERNAME', studentName:'STUDENTNAME'})
   },
   methods: {
     submit() {
