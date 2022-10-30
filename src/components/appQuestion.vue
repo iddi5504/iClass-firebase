@@ -26,10 +26,9 @@
 </template>
 
 <script>
-import { bus } from "../main.js"
 import store from "../store/store"
 export default {
-    props:["questionIndex"],
+    props:["questionIndex",'questionId'],
     data(){
         return {
             questiontext:"",
@@ -58,16 +57,15 @@ export default {
          } catch (error) {
             console.log("Add option")
          }
-         const id=Math.random().toString().slice(3,10)
           const question={
-            id:id,
+            id:this.questionId,
             question:this.questiontext,
             options:this.options,
             answer:this.correctanswer
 
           }
          this.questioncomplete=!this.questioncomplete
-        store.dispatch("done",{question:question,questionIndex:this.questionIndex})
+        store.dispatch("done",{question:question,id:this.questionId})
         if ( this.$refs.done.innerText=="Done") {
             this.$refs.done.innerText="Edit"
             // remove the disabled attribute from option inpu
@@ -94,7 +92,7 @@ export default {
       },
       Delete(){
         console.log(this.questionIndex)
-        bus.$emit("deleted",this.questionIndex)
+        this.$store.dispatch('deleteQuestion', this.questionIndex)
       }
     },
     computed:{

@@ -1,11 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { 
-  getAuth
+  getAuth,
+  connectAuthEmulator
+  
   
  } from "firebase/auth";
  import {
-  getFirestore
+  getFirestore,
+  connectFirestoreEmulator
+  
   
 } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
@@ -26,11 +30,11 @@ initializeApp(firebaseConfig);
 // initialize authentication
 const auth = getAuth()
 // set up authentication emulator
-// connectAuthEmulator(auth ,"http://localhost:9099")
+connectAuthEmulator(auth ,"http://localhost:9099")
 
 
 const firestore=getFirestore()
-// connectFirestoreEmulator(firestore,"localhost",4001)
+connectFirestoreEmulator(firestore,"localhost",4001)
 
 export {
   auth,

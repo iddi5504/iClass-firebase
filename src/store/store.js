@@ -37,7 +37,7 @@ export default new Vuex.Store({
         email:'',
         isAuthenticated:false,
         alertMessage:"",
-        showSubmissions:false
+        showSubmissions:false,
     },
     getters: {
         // questions for user to answer
@@ -104,13 +104,17 @@ export default new Vuex.Store({
             state.teacherName = teacherInfo.teacherName
         },
 
-        setAddQuestion(state, question) {
-            state.questions.push(question)
-            console.log(state.questions)
+        setAddQuestion(state,id) {
+            state.questions.push({id:id})
         },
         setDone(state, singleQuestionData) {
-            const { question: question, questionIndex: questionIndex } = singleQuestionData;
-            state.questions[questionIndex] = question
+            const { question: question_, id: id } = singleQuestionData;
+            state.questions.forEach((question)=>{
+                console.log(question)
+                if(question.id === id){
+                    state.questions[state.questions.indexOf(question)]=question_
+                }
+            })
         },
 
         async setRecieveQuestions(state, questions) {
@@ -183,6 +187,13 @@ export default new Vuex.Store({
         },
         isAuthenticated(state,isAuthenticated) {
             state.isAuthenticated=isAuthenticated
+        },
+        addQuestion(state){
+            state.numberOfQuestions=state.numberOfQuestions + 1
+        },
+        setDeleteQuestion(state,questionId){
+            console.log(state.questions.splice(questionId,1))
+            state.questions.splice(questionId,0) 
         }
     },
 
@@ -259,7 +270,10 @@ export default new Vuex.Store({
 
         },
         addQuestion(context) {
-            context.commit("setAddQuestion", Math.random().toString().slice(2, 8))
+            context.commit("setAddQuestion",Math.random().toString().slice(2,8))
+        },
+        deleteQuestion(context,questionId) {
+            context.commit("setDeleteQuestion",questionId)
         }
 
     }

@@ -7,8 +7,8 @@
         Add Question
       </button>
       <transition-group class="appQuestion" name="animate">
-        <appQuestion v-for="(question, questionIndex) in question" :key="question.id" :questionIndex="questionIndex"
-          :question="question">
+        <appQuestion v-for="(question, questionIndex) in questions" :key="question.id" :questionIndex="questionIndex"
+          :question="question" :questionId="question.id">
         </appQuestion>
       </transition-group>
       <button v-show="showComplete" @click="questionsComplete" class="addquestionbutton">
@@ -35,7 +35,6 @@ export default {
       numberOptions: 0,
       options: [],
       correctanswer: "",
-      numberOfQuestions: 0,
       questioncomplete: false,
       questionTitle: "",
       question: '',
@@ -47,7 +46,7 @@ export default {
   methods: {
     addQuestion() {
       // this.numberOfQuestions = this.numberOfQuestions + 1;
-      this.questions = { id: Math.random().toString().slice(2, 9) }
+      this.$store.dispatch('addQuestion')
 
     },
     async questionsComplete() {
@@ -62,12 +61,7 @@ export default {
       await store.dispatch("questionsComplete", questionData)
       this.load = !this.load
       this.$router.push("/questiontype/multiplechoiceQ/questionCode")
-      
-
     }
-
-  },
-  beforeUpdate() {
 
   },
   created() {
@@ -88,13 +82,11 @@ export default {
       return this.question.length > 0 ? true : false;
 
     },
-    questions: {
-      get() {
-        return store.getters.QUESTIONCREATION
-      },
-      set(question) {
-        store.commit("setAddQuestion", question)
-      }
+    numberOfQuestions(){
+      return this.$store.state.numberOfQuestions
+    },
+    questions() {
+      return this.$store.state.questions
     },
     questionCode() {
       return this.$store.getters.QUESTIONCODE
