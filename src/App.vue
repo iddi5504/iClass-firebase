@@ -171,6 +171,7 @@ button {
   box-shadow: 0px 0px 5px 0px var(--shade1);
   width:95%;
   color: var(--textColor);
+  margin: 5px 0;
   
 }
 .questiontextfield{
