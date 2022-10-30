@@ -9,13 +9,13 @@
         <div v-if="isAuthenticated" class="initials" @click="showProfileInfo_">{{ initials }}</div>
         <transition name="showMenu">
             <ul v-show="showProfileInfo" class="profileInfo">
-                <li>{{ name }}</li>
-                <li>{{ email }}</li>
-                <li @click="goToSubmissions">Submissions</li>
+                <li><i class="bi bi-person"></i> {{ name }}</li>
+                <li> <i class="bi bi-envelope"></i> {{ email }}</li>
+                <li @click="goToSubmissions"><i class="bi bi-blockquote-left"></i> Submissions</li>
                 <li>
-                    <router-link :to="{ name: 'takeTest' }">Take a test</router-link>
+                    <router-link :to="{ name: 'takeTest' }"><i class="bi bi-pen"></i> Take a test</router-link>
                 </li>
-                <li @click="signOut">Sign Out</li>
+                <li @click="signOut"><i style="color:red;" class="bi bi-box-arrow-left"></i> Sign Out</li>
             </ul>
         </transition>
         <loadingScreen v-if="load" :message="'Signing Out'"></loadingScreen>
@@ -99,7 +99,7 @@ export default {
     display: flex;
     list-style: none;
     flex-direction: column;
-    align-items: flex-center;
+    align-items: flex-start;
     justify-content: center;
     position: absolute;
     z-index: 4;
@@ -116,7 +116,6 @@ export default {
     padding: 10px;
     border-bottom: 1px solid black;
     width: 100%;
-    text-align: center;
     background: transparent;
 }
 
