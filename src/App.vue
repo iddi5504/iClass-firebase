@@ -57,7 +57,7 @@ export default {
                 setTimeout(() => {
                   this.showAlert=false
                   this.$store.commit('resetAlertMessage')
-                }, 3000);
+                }, 6000);
             }
         }
     }
@@ -238,7 +238,7 @@ button {
 
 .showAlert-enter-active,
 .showAlert-leave-active{
-  transition: 0.5s all ease-in-out;
+  transition: 0.8s all ease-in-out;
   transform: translateX(0);
 }
 
