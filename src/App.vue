@@ -1,25 +1,66 @@
 <template>
-  <transition name="switch" mode="out-in">
-    <router-view></router-view>
-  </transition>  
+  <span class="w-100 h-100 justify-content-center d-flex">
+    <transition name="switch" mode="out-in">
+      <router-view></router-view>
+    </transition>  
+     <!-- ALERT -->
+     <transition name="showAlert" >
+      <div v-if="showAlert" class="alert">
+         <div class="alertMessage">{{message}}</div>
+      </div>
+  </transition>
+
+  </span>
 
 </template>
 
 <script>
 import store from './store/store'
 import { auth } from '../src/firebase/firebase'
-
+import {bus} from './main'
+import {mapGetters} from 'vuex'
 export default {
   store: store,
+  data(){
+    return {
+      showAlert:false
+    }
+  },
   beforeCreate(){
     auth.onAuthStateChanged(async (user)=>{
       if(user){
-        this.$router.push({name:'questiontype'})
         await this.$store.dispatch('updateCurrentTeacher',user)
         this.$store.dispatch('getStudentSubmissions',user.uid)
       }
     })
-  }
+  },
+  created(){
+    bus.$on("alertMessage", (message)=>{
+      this.message=message
+    })
+  },
+  methods:{
+    alert(message){
+            this.message=message
+            console.log('the message',message)
+        }
+  },
+  computed:{
+    ...mapGetters({message:'ALERTMESSAGE'})
+  },
+  
+    watch:{
+        message(message){
+            if(message){
+                console.warn(message)
+                this.showAlert=true
+                setTimeout(() => {
+                  this.showAlert=false
+                  this.$store.commit('resetAlertMessage')
+                }, 3000);
+            }
+        }
+    }
   
 }
 // --brandcolor: #E94560;
@@ -162,6 +203,52 @@ button {
   box-shadow: none;
   
 }
+
+.alertMessage{
+  width: 100%;
+  max-width: 586px;
+  background: #6ca66c;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  padding: 6px;
+  border-left: 14px solid green;
+  color: black;
+  word-break: break-all;
+}
+.alert{
+  width: 100%;
+  position: absolute;
+  top: 9vh;
+  display: flex;
+  justify-content: center;
+}
+.showMenu-enter-active,
+.showMenu-leave-active{
+  transition: 0.3s all ease-in-out;
+  transform: translateX(0);
+}
+
+.showMenu-enter{
+  transform: translateX(300px);
+}
+.showMenu-leave-to{
+  transform: translateX(300px);
+}
+
+.showAlert-enter-active,
+.showAlert-leave-active{
+  transition: 0.5s all ease-in-out;
+  transform: translateX(0);
+}
+
+.showAlert-enter{
+  transform: translateY(-300px);
+}
+.showAlert-leave-to{
+  transform: translateY(-300px);
+}
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

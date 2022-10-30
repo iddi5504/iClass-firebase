@@ -9,7 +9,6 @@ import answerQuestion from '../components/answerQuestion.vue'
 import allMarkedQuestions from '../views/allMarkedQuestions.vue'
 import takeTest from '../views/takeTest.vue'
 import LogIn from '../views/LogIn.vue'
-
 const routes = [
   {
     path: '/',
@@ -18,6 +17,7 @@ const routes = [
     meta:{
       title:'Welcome to iClass'
     }
+    
   },
   {
     path:'/signup/',
@@ -50,7 +50,6 @@ const routes = [
     meta:{
       title:'Choose your question type'
     }
-    
   },
   {
     path:'/studentpage',

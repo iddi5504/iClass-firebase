@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="text-center note  d-flex flex-column align-items-start justify-content-around">
-            The teacher name is the name your students know you by.Make sure they are familiar with it 
+           Password must be more than six characters long in length
         </div>
 
         <button @click="signup()" class="m-2">Sign Up</button>
@@ -38,7 +38,7 @@
             </div>
             <div>
                <router-link :to="{name:'logIn'}">
-                Sign In
+                <u>Sign In</u>
                </router-link>
             </div>
         </h5>
@@ -58,7 +58,6 @@ import {
     doc
 } from 'firebase/firestore'
 const users=collection(firestore,'users')
-
 export default {
     data() {
         return {
@@ -88,8 +87,11 @@ export default {
                         this.$store.commit('setTeacherInfo',userInfo)
                         this.$router.push({name:'questiontype'})
                     })
-
                 })
+                .catch((err)=>{
+                        this.$store.commit('setAlertMessage',err.message)
+                        this.load=!this.load
+                    })
             } 
            
         }
@@ -118,6 +120,7 @@ export default {
 .body {
     max-height: 60%;
     height: 100%;
+    align-self: center;
 }
 
 

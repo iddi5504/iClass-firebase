@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="text-center note  d-flex flex-column align-items-start justify-content-around">
-            The teacher name is the name your students know you by.Make sure they are familiar with it 
+            The teacher name is the name your students know you by.Make sure they are familiar with it
         </div>
 
         <button @click="signIn()" class="m-2">Sign In</button>
@@ -28,14 +28,16 @@
 
         <h5 class="text-center p-2">
             <div>
-                Already have an account
+                Do not have an account yet?
             </div>
             <div>
-                Sign In
+              <router-link :to="{name:'signup'}">
+                <u> Sign Up</u>
+              </router-link>
             </div>
         </h5>
-         <!-- load screen -->
-         <loadingScreen v-if="load" :message="'Signing In'"></loadingScreen>
+        <!-- load screen -->
+        <loadingScreen v-if="load" :message="'Signing In'"></loadingScreen>
     </div>
 </template>
 
@@ -43,44 +45,47 @@
 import {
     signInWithEmailAndPassword
 } from '@firebase/auth';
-import { auth,firestore } from '../firebase/firebase'
+import { auth, firestore } from '../firebase/firebase'
 import {
     collection,
     getDoc,
     doc
 } from 'firebase/firestore'
-const users=collection(firestore,'users')
-
+const users = collection(firestore, 'users')
 export default {
-    name:'logIn',
+    name: 'logIn',
     data() {
         return {
             email: "",
             password: "",
-            load:false
+            load: false
 
         }
     },
 
     methods: {
         signIn() {
-            if(this.email && this.password){
+            if (this.email && this.password) {
                 this.load = true
                 this.$store.commit('setTeacherName', this.teacherName)
-                signInWithEmailAndPassword(auth,this.email,this.password)
-                .then(user=>{
-                    const userUID=user.user.uid
-                    getDoc(doc(users,userUID))
-                    .then((snapshot)=>{
-                        const userInfo={teacherId:snapshot.id,teacherName:snapshot.data().teacherName}
-                        this.$store.commit('setTeacherInfo',userInfo)
-                        this.load=!this.load
-                        this.$router.push({name:'questiontype'})
-                    })
+                signInWithEmailAndPassword(auth, this.email, this.password)
+                    .then(user => {
+                        const userUID = user.user.uid
+                        getDoc(doc(users, userUID))
+                            .then((snapshot) => {
+                                const userInfo = { teacherId: snapshot.id, teacherName: snapshot.data().teacherName }
+                                this.$store.commit('setTeacherInfo', userInfo)
+                                this.load = !this.load
+                                this.$router.push({ name: 'questiontype' })
+                            })
 
-                })
-            } 
-           
+                    })
+                    .catch((err) => {
+                        this.$store.commit('setAlertMessage', err.message)
+                        this.load = !this.load
+                    })
+            }
+
         }
     },
     created() {
@@ -107,6 +112,7 @@ export default {
 .body {
     max-height: 60%;
     height: 100%;
+    align-self: center;
 }
 
 
@@ -146,7 +152,7 @@ a {
     font-size: 1rem;
 }
 
-.bi{
+.bi {
     position: absolute;
     top: -3px;
     font-size: 1.6rem;

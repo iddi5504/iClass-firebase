@@ -9,10 +9,12 @@
         <div v-if="isAuthenticated" class="initials" @click="showProfileInfo_">{{ initials }}</div>
         <transition name="showMenu">
             <ul v-show="showProfileInfo" class="profileInfo">
-                <li>{{name}}</li>
-                <li>{{email}}</li>
+                <li>{{ name }}</li>
+                <li>{{ email }}</li>
                 <li @click="goToSubmissions">Submissions</li>
-                <li><router-link :to="{name:'takeTest'}">Take a test</router-link></li>
+                <li>
+                    <router-link :to="{ name: 'takeTest' }">Take a test</router-link>
+                </li>
                 <li @click="signOut">Sign Out</li>
             </ul>
         </transition>
@@ -24,59 +26,50 @@
 <script>
 import { auth } from '../firebase/firebase'
 import { signOut } from 'firebase/auth';
-import { bus } from '../main'
 import { mapGetters } from 'vuex';
 export default {
-    data(){
+    data() {
         return {
-            showProfileInfo:false,
-            load:false
+            showProfileInfo: false,
+            load: false
+
         }
     },
     computed: {
-       
-        name(){
+
+        name() {
             return this.$store.state.teacherName;
         },
-        isAuthenticated(){
+        isAuthenticated() {
             return this.$store.state.isAuthenticated
         },
-        ...mapGetters({email:'EMAIL',initials:'INITIALS'})
+        ...mapGetters({ email: 'EMAIL', initials: 'INITIALS' })
     },
-    methods:{
-        showProfileInfo_(){
-            this.showProfileInfo=!this.showProfileInfo
+    methods: {
+        showProfileInfo_() {
+            this.showProfileInfo = !this.showProfileInfo
         },
-        signOut(){
-            this.load=true
+        signOut() {
+            this.load = true
             signOut(auth)
-            .then(()=>{
-                this.load=false
-                this.$router.push({name:'welcome'})
-            })
+                .then(() => {
+                    this.load = false
+                    this.$store.commit('isAuthenticated', false)
+
+                    this.$router.push({ name: 'welcome' })
+
+                })
         },
-        goToSubmissions(){
-            bus.$emit('showSubmissions',true)
-            this.$router.push({name:'questiontype'})
-        }
+        goToSubmissions() {
+            this.$store.commit('setShowSubmissions', true)
+            this.$router.replace({ name: 'questiontype' })
+        },
+
     }
 }
 </script>
 
 <style>
-.showMenu-enter-active,
-.showMenu-leave-active{
-    transition: 0.3s all ease-in-out;
-    transform: translateX(0);
-}
-
-.showMenu-enter{
-    transform: translateX(300px);
-}
-.showMenu-leave-to{
-    transform: translateX(300px);
-}
-
 .initials {
     border-radius: 50%;
     background-color: #7ef8c5;
@@ -92,7 +85,8 @@ export default {
     margin: 2px;
     font-weight: 600;
 }
-.initials:hover{
+
+.initials:hover {
     cursor: pointer;
 }
 
@@ -125,7 +119,8 @@ export default {
     text-align: center;
     background: transparent;
 }
-.profileInfo li:hover{
+
+.profileInfo li:hover {
     transition: 0.3s all ease;
     background: linear-gradient(45deg, var(--secondaryBackgroundColor), transparent);
 }
@@ -133,7 +128,8 @@ export default {
 .profileInfo li:last-child {
     color: red;
 }
-.profileInfo li:last-child:hover{
+
+.profileInfo li:last-child:hover {
     cursor: pointer;
 }
 </style>

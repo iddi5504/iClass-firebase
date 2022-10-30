@@ -35,7 +35,9 @@ export default new Vuex.Store({
         localQuestionCode: "",
         answerInfo: [],
         email:'',
-        isAuthenticated:false
+        isAuthenticated:false,
+        alertMessage:"",
+        showSubmissions:false
     },
     getters: {
         // questions for user to answer
@@ -85,6 +87,9 @@ export default new Vuex.Store({
         },
         EMAIL(state){
             return state.email
+        },
+        ALERTMESSAGE(state){
+            return state.alertMessage
         }
     },
     mutations: {
@@ -166,6 +171,18 @@ export default new Vuex.Store({
             state.teacherName = user.data().teacherName
             state.email= user.data().email
             state.isAuthenticated=true
+        },
+        setAlertMessage(state, message) {
+            state.alertMessage=message
+        },
+        resetAlertMessage(state) {
+            state.alertMessage=''
+        },
+        setShowSubmissions(state,showSubmissions){
+            state.showSubmissions=showSubmissions
+        },
+        isAuthenticated(state,isAuthenticated) {
+            state.isAuthenticated=isAuthenticated
         }
     },
 

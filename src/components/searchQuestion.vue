@@ -1,5 +1,5 @@
 <template>
-  <div class="body d-flex flex-column justify-content-around align-items-center w-100">
+  <div class="body d-flex flex-column justify-content-center align-items-center w-100">
     <div class="d-flex text-center flex-column align-items-center">
       <img src="../assets/test.png" class="coloredicon" alt="">
       <div style="color:var(--titleColor);" class="h3">Ready to take the test {{ studentName }} ?</div>
@@ -24,6 +24,9 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import { doc, getDoc, collection } from 'firebase/firestore'
+const questions = collection(firestore, "questions")
+import { firestore } from '../firebase/firebase';
 export default {
   //   components:{
   //     answerQuestion
@@ -39,15 +42,25 @@ export default {
   methods: {
     findTest() {
       this.load = true
-      this.$router.push("/studentpage/answerQuestion/" + this.questionCode)
-      this.load = !this.load
+      getDoc(doc(questions, this.questionCode))
+          .then((data)=>{
+            if(data.exists()){
+              this.$router.push("/studentpage/answerQuestion/" + this.questionCode)
+              this.load = !this.load
+            }else{
+              this.$store.commit('setAlertMessage','Could not find test. Make sure you typed the correct question code provided by your teacher')
+              this.load = !this.load
+            }
+          })
+        
+        
     }
   },
   created() {
 
   },
   computed: {
-    ...mapGetters({studentName:'STUDENTNAME'})
+    ...mapGetters({ studentName: 'STUDENTNAME' })
   }
 }
 </script>

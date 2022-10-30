@@ -3,16 +3,16 @@
   <AppNav></AppNav>
   <!-- section active -->
   <div  class="section d-flex flex-row align-items-center justify-content-around w-100">
-    <div  @click="switch_('createTest')" >
-      <h4 :class="{'active':active==='createTest'}">Set Question</h4>
+    <div  @click="switch_(false)" >
+      <h4 :class="{'active':!showSubmissions}">Set Question</h4>
     </div>
-    <div @click="switch_('submittedTest')" >
-      <h4 :class="{'active':active==='submittedTest'}">Test Submissions</h4>
+    <div @click="switch_(true)" >
+      <h4 :class="{'active':showSubmissions}">Test Submissions</h4>
     </div>
   </div>
   <!-- create test -->
   <transition name="switch" mode="out-in">
-    <div key="1" v-if="active=='createTest'" class="body d-flex  justify-content-around flex-column align-items-ceneter text-center">
+    <div key="1" v-if="!showSubmissions" class="body d-flex  justify-content-around flex-column align-items-ceneter text-center">
       <!-- teacher image -->
       <div class=" d-flex text-center align-items-center  flex-column">
         <img src="../assets/teacher.png" class="coloredicon" alt="">
@@ -33,7 +33,7 @@
   
   <!-- Submitted answers -->
 
-    <div key="2" v-if="active=='submittedTest'" class="body d-flex  justify-content-start flex-column align-items-ceneter text-center w-100">
+    <div key="2" v-if="showSubmissions" class="body d-flex  justify-content-start flex-column align-items-ceneter text-center w-100">
       <h3>Submitted Tests</h3>
       <div  v-if="!submissionPresent" class="h3 h-100 d-flex justify-content-center flex-column align-items-center text-center">
         No submissions yet
@@ -57,7 +57,6 @@
 
 <script>
 import AppNav from "../components/appNav"
-import { bus } from '../main'
 import { mapGetters } from "vuex"
 export default {
   components: {
@@ -69,6 +68,9 @@ export default {
     }
   },
   computed:{
+      showSubmissions(){
+        return this.$store.state.showSubmissions
+      },
     ...mapGetters({answerInfo:'ANSWERINFO',teacherName:'TEACHERNAME'}),
 
     submissionPresent(){
@@ -83,18 +85,10 @@ export default {
     }
 
   },
-  created(){
-    // get the id of the submission made by the student
-    bus.$on(
-      'showSubmissions',()=>{
-        this.active='submittedTest'
-      }
-    )
-
-  },
+ 
   methods:{
-    switch_(active){
-      this.active = active
+    switch_(showSubmissions){
+      this.$store.commit('setShowSubmissions',showSubmissions)
     }
   }
 }
