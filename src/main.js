@@ -15,6 +15,10 @@ const router = new VueRouter({
   routes:Routes,
   mode:"history"
 })
+router.beforeEach((to,from,next)=>{
+  document.title=to.meta.title
+  next();
+})
 /* eslint-disable no-new */
 Vue.component('loadingScreen',loadingScreen)
 new Vue({

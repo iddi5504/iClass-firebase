@@ -11,20 +11,21 @@ import takeTest from '../views/takeTest.vue'
 import LogIn from '../views/LogIn.vue'
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: HomeView
-  // },
   {
     path: '/',
     name: 'welcome',
-    component: Welcome
+    component: Welcome,
+    meta:{
+      title:'Welcome to iClass'
+    }
   },
   {
     path:'/signup/',
     name:"signup",
-    component: SignupView
+    component: SignupView,
+    meta:{
+      title:'Sign Up to iClass'
+    }
   },
   {
     path:'/takeTest/',
@@ -46,6 +47,9 @@ const routes = [
     path:'/questiontype',
     name:"questiontype",
     component: questiontype,
+    meta:{
+      title:'Choose your question type'
+    }
     
   },
   {
@@ -56,13 +60,19 @@ const routes = [
      { 
       path:'/studentpage/searchQuestion/',
       name:"searchQuestion",
-      component: searchQuestion
+      component: searchQuestion,
+      meta:{
+        title:'Search Question'
+      }
     },
     { 
       path:'/studentpage/answerQuestion/:questionCode',
       name:"answerQuestion",
       component: answerQuestion,
-      props: true
+      props: true,
+      meta:{
+        title:'Take test'
+      }
     },
    
     ]
@@ -71,23 +81,27 @@ const routes = [
     path:'/studentpage/markedQuestions/:QuestionId',
     name:"markedQuestions",
     component: allMarkedQuestions,
+    meta:{
+      title:'Marked Questions'
+    }
   },
   {
     path:'/questiontype/multiplechoiceQ',
     name:"multiplechoiceQ",
-    component: multiplechoiceQ
+    component: multiplechoiceQ,
+    meta:{
+      title:'Set Multiple Choice Questions'
+    }
   },
   {
     path:'/questiontype/multiplechoiceQ/questionCode/',
     name:"questionCode",
     component: questionCode,
-    props:true
+    props:true,
+    meta:{
+      title:'Question Code'
+    }
   }
  
 ]
-// routes.beforeEach((to,next)=>{
-//   document.title=to.meta.title
-//   next()
-// })
-
 export default routes

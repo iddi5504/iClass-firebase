@@ -14,7 +14,7 @@ export default {
   beforeCreate(){
     auth.onAuthStateChanged(async (user)=>{
       if(user){
-        // this.$router.push({name:'questiontype'})
+        this.$router.push({name:'questiontype'})
         await this.$store.dispatch('updateCurrentTeacher',user)
         this.$store.dispatch('getStudentSubmissions',user.uid)
       }
