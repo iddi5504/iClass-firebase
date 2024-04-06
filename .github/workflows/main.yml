@@ -10,8 +10,13 @@ jobs:
   build: 
 
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: action/checkout@v3
+      - uses: actions/checkout@v2
+
+      - name: set up node.js
+        uses: actions/setup-node@v2
+        
       - name: install
         run: |
           npm install
