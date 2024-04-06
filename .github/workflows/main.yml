@@ -15,10 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: build image
-        run: build -t vue-app .
-
-      - name: build image
-        run: build -t vue-app .
+        run: docker build -t vue-app .
 
       - name: run image
         run: docker run -p 8080:80 vue-app
