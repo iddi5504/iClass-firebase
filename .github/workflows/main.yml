@@ -21,5 +21,8 @@ jobs:
       - name: build image
         run: docker build -t vue-app .
 
-        
+      - name: run build
+        run: |
+          npm install
+          npm run build 
    
