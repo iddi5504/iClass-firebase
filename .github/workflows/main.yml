@@ -14,12 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: set up node.js
-        uses: actions/setup-node@v2
+      - name: build image
+        run: build -t vue-app .
+
+      - name: build image
+        run: build -t vue-app .
+
+      - name: run image
+        run: docker run -p 8080:80 vue-app
+
         
-      - name: install
-        run: |
-          npm install
-          npm run serve
-          npm run build
-          npm run lint
+   
