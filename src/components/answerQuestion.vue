@@ -70,7 +70,6 @@ export default {
         teacherId: this.$store.state.teacherId,
         questions: this.answeredQuestionData
       }
-      console.warn("🚀 ~ file: answerQuestion.vue ~ line 62 ~ submit ~ answeredQuestionData", answeredQuestionData)
 
       // dispatch answer data to store      
       store.dispatch("submitAnswers", answeredQuestionData)
@@ -97,7 +96,6 @@ export default {
     getDoc(doc(questions, questionCode))
       .then((question) => {
         console.log(question.data())
-        // store.dispatch("recieveQuestions", {question:question,questionCode:questionCode});
         this.questions = question.data().Questions
       })
 
