@@ -90,7 +90,6 @@ export default {
 
     },
     Delete() {
-      console.log(this.questionIndex)
       bus.$emit("deleted", this.questionIndex)
     }
   },
