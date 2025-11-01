@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="text-center note  d-flex flex-column align-items-start justify-content-around">
-            The teacher name is the name your students know you by.Make sure they are familiar with it 
+            The teacher name is the name your students know you by.Make sure they are familiar with it
         </div>
 
         <button @click="signup()" class="m-2">Sign Up</button>
@@ -37,9 +37,9 @@
                 Already have an account
             </div>
             <div>
-               <router-link :to="{name:'logIn'}">
-                Sign In
-               </router-link>
+                <router-link :to="{ name: 'logIn' }">
+                    Sign In
+                </router-link>
             </div>
         </h5>
         <!-- load screen -->
@@ -51,13 +51,13 @@
 import {
     createUserWithEmailAndPassword
 } from '@firebase/auth';
-import { auth,firestore } from '../firebase/firebase'
+import { auth, firestore } from '../firebase/firebase'
 import {
     collection,
     setDoc,
     doc
 } from 'firebase/firestore'
-const users=collection(firestore,'users')
+const users = collection(firestore, 'users')
 
 export default {
     data() {
@@ -65,33 +65,32 @@ export default {
             email: "",
             password: "",
             teacherName: "",
-            load:false
+            load: false
 
         }
     },
 
     methods: {
         signup() {
-            if(this.email && this.password && this.teacherName){
-                this.load=!this.load
-                createUserWithEmailAndPassword(auth,this.email,this.password)
-                .then(user=>{
-                    const userUID=user.user.uid
-                    setDoc(doc(users,userUID),{
-                        teacherName:this.teacherName,
-                        email:this.email,
-                    })
-                    .then(()=>{
-                        this.load=!this.load
-                        const userInfo={teacherId:user.user.uid,teacherName:this.teacherName}
-                        console.log(userInfo)
-                        this.$store.commit('setTeacherInfo',userInfo)
-                        this.$router.push({name:'questiontype'})
-                    })
+            if (this.email && this.password && this.teacherName) {
+                this.load = !this.load
+                createUserWithEmailAndPassword(auth, this.email, this.password)
+                    .then(user => {
+                        const userUID = user.user.uid
+                        setDoc(doc(users, userUID), {
+                            teacherName: this.teacherName,
+                            email: this.email,
+                        })
+                            .then(() => {
+                                this.load = !this.load
+                                const userInfo = { teacherId: user.user.uid, teacherName: this.teacherName }
+                                this.$store.commit('setTeacherInfo', userInfo)
+                                this.$router.push({ name: 'questiontype' })
+                            })
 
-                })
-            } 
-           
+                    })
+            }
+
         }
     },
     created() {
@@ -156,7 +155,7 @@ a {
     max-width: 34ch;
 }
 
-.bi{
+.bi {
     position: absolute;
     top: -4px;
     font-size: 1.6rem;
