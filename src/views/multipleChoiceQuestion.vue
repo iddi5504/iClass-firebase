@@ -62,7 +62,7 @@ export default {
       await store.dispatch("questionsComplete", questionData)
       this.load = !this.load
       this.$router.push("/questiontype/multiplechoiceQ/questionCode")
-      
+
 
     }
 
@@ -73,11 +73,9 @@ export default {
   created() {
     bus.$on("question", (data) => {
       this.questions[data.questionIndex] = data.question;
-      console.log()
     }),
       bus.$on("deleted", (questionIndex) => {
         this.questions.splice(questionIndex, 1);
-        // console.log(this.questions)
       });
     this.question = this.questions
   },
