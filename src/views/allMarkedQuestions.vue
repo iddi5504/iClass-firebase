@@ -6,19 +6,19 @@
                 <div>
                     <h3>Total score</h3>
                 </div>
-                <div class="h2">{{SCORE}}</div>
+                <div class="h2">{{ SCORE }}</div>
             </div>
             <div class="body d-flex flex-column align-items-center w-100">
-                <div v-for="(answeredquestion,questionIndex) in answeredQuestionData.questions" :key="questionIndex"
+                <div v-for="(answeredquestion, questionIndex) in answeredQuestionData.questions" :key="questionIndex"
                     class="w-100">
-                    <transition name="show">     
+                    <transition name="show">
                         <markedQuestion :answeredquestion="answeredquestion" :questionIndex="questionIndex">
                         </markedQuestion>
                     </transition>
                 </div>
             </div>
         </div>
-    <loadingScreen v-if="load" :message="'Retrieving answers'"></loadingScreen>
+        <loadingScreen v-if="load" :message="'Retrieving answers'"></loadingScreen>
     </div>
 
 </template>
@@ -31,9 +31,9 @@ import AppNav from "../components/appNav"
 const questionAnswers = collection(firestore, "questionAnswers")
 import { firestore } from '../firebase/firebase'
 import {
-  collection,
-  doc,
-  getDoc
+    collection,
+    doc,
+    getDoc
 } from 'firebase/firestore'
 export default {
     components: {
@@ -44,47 +44,45 @@ export default {
         return {
             submitted: false,
             showAnswers: false,
-            answers:[],
-            load:false,
-            answeredQuestionData:[]
+            answers: [],
+            load: false,
+            answeredQuestionData: []
 
         }
     },
-    beforeCreate(){
-        
+    beforeCreate() {
+
     },
-    mounted(){
-        
+    mounted() {
+
     },
     created() {
         const thisQuestionAnswers = doc(questionAnswers, this.questionAnswersCode)
-            getDoc(thisQuestionAnswers)
-                .then((questionAnswers_) => {
-                    this.answeredQuestionData = questionAnswers_.data()
-                })
+        getDoc(thisQuestionAnswers)
+            .then((questionAnswers_) => {
+                this.answeredQuestionData = questionAnswers_.data()
+            })
 
         // get question from store from database
-        this.load=!this.load
+        this.load = !this.load
         store.dispatch("getQuestionAnswers", this.questionAnswersCode)
-        .then(() => {
-            console.log("taking the answer from the store ")
-            this.load=!this.load
-        })
-        console.log("🚀 ~ file: allMarkedQuestions.vue ~ line 45 ~ created ~ this.questionCode", this.QUESTIONCODE)
+            .then(() => {
+                this.load = !this.load
+            })
     },
     computed: {
         // the answeredQuestionData for marking 
-    
+
         // get answer id from params
-        questionAnswersCode(){
+        questionAnswersCode() {
             return this.$route.params.QuestionId
         },
-       
-        ...mapGetters(['QUESTIONCODE','STUDENTNAME','SCORE'])
+
+        ...mapGetters(['QUESTIONCODE', 'STUDENTNAME', 'SCORE'])
 
     },
-    watch:{
-        
+    watch: {
+
     }
 }
 </script>
@@ -95,22 +93,24 @@ export default {
     max-width: 700px;
 }
 
-.show-enter-active{
-    transition: all 0.5s ease-in-out; 
+.show-enter-active {
+    transition: all 0.5s ease-in-out;
 }
+
 .show-move,
-.show-leave-active{
-    transition: all 0.5s ease-in-out; 
+.show-leave-active {
+    transition: all 0.5s ease-in-out;
 }
-.show-enter{
-  transform: translateX(-100%);
-  opacity: 0;
 
-}
-.show-leave-to{
-  transform: translateX(100%);
-  opacity: 0;
+.show-enter {
+    transform: translateX(-100%);
+    opacity: 0;
 
 }
 
+.show-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+
+}
 </style>
