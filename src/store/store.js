@@ -34,8 +34,8 @@ export default new Vuex.Store({
         questionCode: null,
         localQuestionCode: "",
         answerInfo: [],
-        email:'',
-        isAuthenticated:false
+        email: '',
+        isAuthenticated: false
     },
     getters: {
         // questions for user to answer
@@ -72,7 +72,7 @@ export default new Vuex.Store({
         INITIALS(state) {
             const name = state.teacherName
             let namelist = name.split(" ")
-            if(name){
+            if (name) {
                 try {
                     let firstInitial = namelist[0][0].toUpperCase()
                     let secondInitial = namelist[1][0].toUpperCase()
@@ -83,7 +83,7 @@ export default new Vuex.Store({
                 }
             }
         },
-        EMAIL(state){
+        EMAIL(state) {
             return state.email
         }
     },
@@ -101,7 +101,6 @@ export default new Vuex.Store({
 
         setAddQuestion(state, question) {
             state.questions.push(question)
-            console.log(state.questions)
         },
         setDone(state, singleQuestionData) {
             const { question: question, questionIndex: questionIndex } = singleQuestionData;
@@ -110,25 +109,21 @@ export default new Vuex.Store({
 
         async setRecieveQuestions(state, questions) {
             // receive question data from server dispatched from answerQuestion component
-            state.answerQuestions =await questions.data().Questions
+            state.answerQuestions = await questions.data().Questions
             state.questionTitle = await questions.data().questionTitle
-            state.teacherName =await questions.data().teacherName
-            state.teacherId =await questions.data().teacherId
+            state.teacherName = await questions.data().teacherName
+            state.teacherId = await questions.data().teacherId
         },
         setSignup(state, signUpInfo_) {
             state.teacherName = signUpInfo_.data.name
             state.teacherId = signUpInfo_.data.id
             state.testSubmissions = signUpInfo_.data.submissions
-            console.warn("🚀 ~ file: store.js ~ line 43 ~ signup ~ signUpInfo.data.submissions", signUpInfo_.data.submissions)
             state.signUpInfo = signUpInfo_
-            console.error("🚀 ~ file: store.js ~ line 43 ~ signup ~ state.testSubmissions", state.testSubmissions)
         },
         setStudentName(state, studentName) {
-            console.warn("🚀 ~ file: store.js ~ line 48 ~ userLogIn ~ studentName", studentName)
             state.studentName = studentName
         },
         setTeacherName(state, teacherName) {
-            console.warn("🚀 ~ file: store.js ~ line 48 ~ userLogIn ~ studentName", teacherName)
             state.teacherName = teacherName
         },
         // set question answers
@@ -151,7 +146,6 @@ export default new Vuex.Store({
             state.questionCode = questionAnswers.id
         },
         setStudentSubmissions(state, testSubmission) {
-            console.log(testSubmission)
             state.testSubmissionsWithStudentNames.push(testSubmission)
 
         },
@@ -164,8 +158,8 @@ export default new Vuex.Store({
         setCurrentTeacher(state, user) {
             state.teacherId = user.id
             state.teacherName = user.data().teacherName
-            state.email= user.data().email
-            state.isAuthenticated=true
+            state.email = user.data().email
+            state.isAuthenticated = true
         }
     },
 
@@ -175,7 +169,6 @@ export default new Vuex.Store({
         updateCurrentTeacher(context, currentTeacher) {
             getDoc(doc(users, currentTeacher.uid))
                 .then((user) => {
-                    console.log(user.data())
                     context.commit('setCurrentTeacher', user)
                 })
         },
@@ -195,9 +188,9 @@ export default new Vuex.Store({
         questionsComplete(context, questionData) {
             // post all questions to the server
             addDoc(questions, questionData)
-            .then((response) => {
-                context.commit('setUpdateQuestionCode', response.id)
-                routes.push({name:'questionCode'})
+                .then((response) => {
+                    context.commit('setUpdateQuestionCode', response.id)
+                    routes.push({ name: 'questionCode' })
 
                 })
 
@@ -208,11 +201,11 @@ export default new Vuex.Store({
             context.commit('setDone', singleQuestionData);
         },
 
-        async recieveQuestions(context, {question,questionCode}) {
+        async recieveQuestions(context, { question, questionCode }) {
             // retrieve all questions frm firestore
             context.commit('setQuestionCode', questionCode)
             context.commit('setRecieveQuestions', question)
-        
+
         },
 
         submitAnswers(context, answeredQuestionData) {
@@ -223,17 +216,14 @@ export default new Vuex.Store({
                 })
         },
 
-        getStudentSubmissions(context,id) {
-            console.warn(id)
+        getStudentSubmissions(context, id) {
             const teacherQuestions = query(questionAnswers, where('teacherId', '==', id))
-            console.log("🚀 ~ file: store.js ~ line 230 ~ getStudentSubmissions ~ teacherQuestions", teacherQuestions)
             let answerInfo = []
             getDocs(teacherQuestions)
                 .then((snapshot) => {
                     snapshot.forEach((question) => {
                         answerInfo.push({ id: question.id, studentName: question.data().studentName, questionTitle: question.data().questionTitle })
                     })
-                    console.log(answerInfo)
                     context.commit('setAnswerInfo', answerInfo)
                 })
 
