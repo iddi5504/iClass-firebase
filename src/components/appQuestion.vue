@@ -52,13 +52,9 @@ export default {
     },
     done() {
       // check if there are options available
-      try {
-        this.$refs.option.forEach(option => {
-          this.options.push(option.value);
-        });
-      } catch (error) {
-        console.log("Add option")
-      }
+      this.$refs.option.forEach(option => {
+        this.options.push(option.value);
+      });
       const id = Math.random().toString().slice(3, 10)
       const question = {
         id: id,
