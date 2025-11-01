@@ -95,7 +95,6 @@ export default {
     var questionCode = this.$route.params.questionCode
     getDoc(doc(questions, questionCode))
       .then((question) => {
-        console.log(question.data())
         this.questions = question.data().Questions
       })
 
@@ -103,7 +102,6 @@ export default {
     // recieve emiition from singleQuestion
     bus.$on("answeredQuestion", (data) => {
       this.answeredQuestionData[data.questionIndex] = data
-      console.table(this.answeredQuestionData)
     })
   }
 
