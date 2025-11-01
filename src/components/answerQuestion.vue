@@ -83,25 +83,23 @@ export default {
       this.$router.push("/studentpage/markedQuestions/" + this.$store.state.questionAnswersCode)
     },
     getQuestions() {
-     
+
     }
   },
   mounted() {
-    // recieve user choice data from singleQuestion components
     bus.$on("choice", (choice) => {
       this.answers[choice.questionIndex] = choice
-      // console.log(this.answers)
 
     })
     //recieve questions from the server
     this.getQuestions()
     var questionCode = this.$route.params.questionCode
-      getDoc(doc(questions,questionCode))
-        .then((question) => {
-          console.log(question.data())
-          // store.dispatch("recieveQuestions", {question:question,questionCode:questionCode});
-          this.questions=question.data().Questions
-        })
+    getDoc(doc(questions, questionCode))
+      .then((question) => {
+        console.log(question.data())
+        // store.dispatch("recieveQuestions", {question:question,questionCode:questionCode});
+        this.questions = question.data().Questions
+      })
 
 
     // recieve emiition from singleQuestion
