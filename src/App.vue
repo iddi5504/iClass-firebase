@@ -93,7 +93,7 @@ input {
   margin: 5px;
   border: none;
   font-size: 23px;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 1px 1px 2px 1px var(--shade1);
   color: #bcc2c5;
   background: var(--primaryBackgroundColor);
