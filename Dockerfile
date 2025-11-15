@@ -1,4 +1,5 @@
 # Stage 1: Build Vue.js app
+# Stage 1: Build Vue.js app
 FROM node:14-alpine AS build-stage
 WORKDIR /app
 
