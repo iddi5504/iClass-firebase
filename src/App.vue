@@ -68,7 +68,6 @@ a {
 
 }
 
-
 nav {
   background-color: var(--primaryBackgroundColor);
   position: relative;
