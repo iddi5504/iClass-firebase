@@ -68,7 +68,6 @@ a {
 
 }
 
-
 nav {
   background-color: var(--primaryBackgroundColor);
   position: relative;
@@ -113,11 +112,6 @@ input:hover {
 
 }
 
-input:focus-within {
-  transition: all 0.5s ease;
-  border-radius: 12px;
-  transform: scale(1.007);
-}
 
 button {
   padding: 10px;
